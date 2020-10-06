@@ -26,7 +26,9 @@ public class BuildLevel: MonoBehaviour {
 		ground.GetComponent<Tilemap>().SetTile(new Vector3Int(1, 0, 1), test);
 		ground.GetComponent<Tilemap>().SetTile(new Vector3Int(2, 0, 1), groundTile);
 
-		GameObject walls = new GameObject("Walls", typeof(Tilemap), typeof(TilemapRenderer));
+		GameObject walls = new GameObject("Walls", typeof(Tilemap), typeof(TilemapRenderer), typeof(TilemapCollider2D), typeof(Rigidbody2D), typeof(CompositeCollider2D));
 		walls.transform.SetParent(level.transform);
+		walls.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+		walls.GetComponent<TilemapCollider2D>().usedByComposite = true;
 	}
 }
