@@ -16,7 +16,6 @@ public class BuildLevel: MonoBehaviour {
 
 	private void Start() {
 		transform.position = Vector3.zero;
-		Sprite[] hellSprites = Resources.LoadAll<Sprite>("Tiles/Hell");
 
 		level = new GameObject("Level", typeof(Grid));
 		level.transform.SetParent(transform);
