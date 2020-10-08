@@ -4,8 +4,13 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Fire: CollideLevelTile {
-	private void Start() {
-		
+	new private void Awake() {
+		base.Awake();
+		foreach (int i in new [] {1, 2}) {
+			Tile t = ScriptableObject.CreateInstance<Tile>();
+			t.sprite = allSprites[i];
+			tiles.Add(t);
+		}
 	}
 
 	private void Update() {

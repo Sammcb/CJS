@@ -7,6 +7,7 @@ public class BuildLevel: MonoBehaviour {
 
 	private int groundZ = 1;
 	private int wallZ = 0;
+	private int fireZ = 0;
 
 	private GameObject level;
 	private GameObject ground;
@@ -30,5 +31,10 @@ public class BuildLevel: MonoBehaviour {
 		walls.transform.SetParent(level.transform);
 		walls.transform.localPosition = Vector3.forward * wallZ;
 		walls.GetComponent<Wall>().FillTiles(new Vector2Int(5, 5), new Vector2Int(-5, 5));
+
+		fire = new GameObject("Fire", typeof(Fire));
+		fire.transform.SetParent(level.transform);
+		fire.transform.localPosition = Vector3.forward * fireZ;
+		fire.GetComponent<Fire>().FillTiles(new Vector2Int(4, 4), new Vector2Int(4, 4));
 	}
 }
