@@ -7,7 +7,7 @@ public class Ground: LevelTile {
 	new private void Awake() {
 		base.Awake();
 		foreach (int i in new [] {5}) {
-			Tile t = ScriptableObject.CreateInstance<Tile>();
+			Tile t = ScriptableObject.CreateInstance<GroundTile>();
 			t.sprite = allSprites[i];
 			tiles.Add(t);
 		}
