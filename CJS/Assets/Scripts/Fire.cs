@@ -14,6 +14,12 @@ public class Fire: CollideLevelTile {
 	}
 
 	private void Update() {
-		
+		updateSprite();
+	}
+
+
+	private void updateSprite() {
+		// get tile animation data and update sprite
+		// https://docs.unity3d.com/Manual/Tilemap-ScriptableTiles-Tile.html
 	}
 }
