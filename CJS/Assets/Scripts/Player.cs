@@ -6,6 +6,7 @@ public class Player: MonoBehaviour {
 
     #region VARIABLES
     public float moveSpeed = 1.1f;
+    public int coins;
     #endregion
 
     public void Start() {

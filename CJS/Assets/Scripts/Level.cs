@@ -6,9 +6,11 @@ public class Level: MonoBehaviour {
 	public static int groundZ = 1;
 	public static int wallZ = 0;
 	public static int fireZ = 0;
+	public static int coinZ = 0;
 	public GameObject ground;
 	public GameObject walls;
 	public GameObject fire;
+	public GameObject coin;
 	private Vector2Int a;
 	private Vector2Int b;
 	private Grid g;
@@ -33,6 +35,12 @@ public class Level: MonoBehaviour {
 		fire.transform.SetParent(transform);
 		fire.transform.localPosition = Vector3.forward * fireZ;
 		fire.GetComponent<Fire>().FillTiles(new Vector2Int(4, 4), new Vector2Int(4, 4));
+
+		coin = new GameObject("Coin", typeof(Coin));
+		coin.transform.SetParent(transform);
+		coin.transform.localPosition = Vector3.forward * coinZ;
+		coin.GetComponent<Coin>().FillTiles(new Vector2Int(1, 1), new Vector2Int(1, 1));
+
 	}
 
 	public void SetBounds(Vector2Int a, Vector2Int b) {
