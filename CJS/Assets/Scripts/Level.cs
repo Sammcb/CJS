@@ -9,8 +9,6 @@ public class Level: MonoBehaviour {
 	public GameObject ground;
 	public GameObject walls;
 	public GameObject fire;
-	private Vector2Int a;
-	private Vector2Int b;
 	private Grid g;
 
 	private void Awake() {
@@ -22,7 +20,7 @@ public class Level: MonoBehaviour {
 		ground = new GameObject("Ground", typeof(Ground));
 		ground.transform.SetParent(transform);
 		ground.transform.localPosition = Vector3.forward * groundZ;
-		ground.GetComponent<Ground>().FillTiles(new Vector2Int(5, 5), new Vector2Int(-5, -5));
+		ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 10));
 
 		walls = new GameObject("Walls", typeof(Wall));
 		walls.transform.SetParent(transform);
@@ -32,31 +30,6 @@ public class Level: MonoBehaviour {
 		fire = new GameObject("Fire", typeof(Fire));
 		fire.transform.SetParent(transform);
 		fire.transform.localPosition = Vector3.forward * fireZ;
-		fire.GetComponent<Fire>().FillTiles(new Vector2Int(4, 4), new Vector2Int(4, 4));
-	}
-
-	public void SetBounds(Vector2Int a, Vector2Int b) {
-		this.a = a;
-		this.b = b;
-	}
-
-	public int MinX() {
-		return Mathf.Min(a.x, b.x);
-	}
-
-	public int MinY() {
-		return Mathf.Min(a.y, b.y);
-	}
-
-	public int MaxX() {
-		return Mathf.Max(a.x, b.x);
-	}
-
-	public int MaxY() {
-		return Mathf.Max(a.y, b.y);
-	}
-
-	public bool InBounds(Vector2Int va, Vector2Int vb) {
-		return Mathf.Min(va.x, vb.x) >= MinX() && Mathf.Max(va.x, vb.x) >= MinY() && Mathf.Min(va.y, vb.y) <= MaxX() && Mathf.Max(va.y, vb.y) <= MaxY();
+		fire.GetComponent<Fire>().FillTiles(new Vector2Int(1, 1), new Vector2Int(4, 4));
 	}
 }

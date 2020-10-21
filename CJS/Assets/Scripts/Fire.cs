@@ -8,6 +8,6 @@ public class Fire: CollideLevelTile {
 		base.Awake();
 		FireTile t = ScriptableObject.CreateInstance<FireTile>();
 		t.sprites = new[] {allSprites[1], allSprites[2]};
-		tiles.Add(t);
+		tile = t;
 	}
 }

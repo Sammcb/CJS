@@ -11,6 +11,5 @@ public class BuildLevel: MonoBehaviour {
 
 		level = new GameObject("Level", typeof(Level));
 		level.transform.SetParent(transform);
-		level.GetComponent<Level>().SetBounds(new Vector2Int(-10, -10), new Vector2Int(10, 10));
 	}
 }

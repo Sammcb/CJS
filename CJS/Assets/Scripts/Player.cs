@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player: MonoBehaviour {
 
     #region VARIABLES
-    public float moveSpeed = 1.1f;
+    private float moveSpeed = 3;
     #endregion
 
     public void Start() {
