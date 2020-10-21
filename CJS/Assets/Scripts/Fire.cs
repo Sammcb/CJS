@@ -6,20 +6,8 @@ using UnityEngine.Tilemaps;
 public class Fire: CollideLevelTile {
 	new private void Awake() {
 		base.Awake();
-		foreach (int i in new [] {1, 2}) {
-			Tile t = ScriptableObject.CreateInstance<Tile>();
-			t.sprite = allSprites[i];
-			tiles.Add(t);
-		}
-	}
-
-	private void Update() {
-		updateSprite();
-	}
-
-
-	private void updateSprite() {
-		// get tile animation data and update sprite
-		// https://docs.unity3d.com/Manual/Tilemap-ScriptableTiles-Tile.html
+		FireTile t = ScriptableObject.CreateInstance<FireTile>();
+		t.sprites = new[] {allSprites[1], allSprites[2]};
+		tiles.Add(t);
 	}
 }
