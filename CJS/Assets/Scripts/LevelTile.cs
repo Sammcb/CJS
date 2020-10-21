@@ -8,6 +8,7 @@ public class LevelTile: MonoBehaviour {
 	protected TilemapRenderer tmr;
 	protected Tile tile;
 	protected Sprite[] allSprites;
+	protected List<Vector2Int> tilesPos = new List<Vector2Int>();
 
 	protected void Awake() {
 		allSprites = Resources.LoadAll<Sprite>("Tiles/Hell");
@@ -22,6 +23,7 @@ public class LevelTile: MonoBehaviour {
 
 	public void FillTiles(Vector2Int a, Vector2Int b) {
 		tm.BoxFill(new Vector3Int(Mathf.Min(a.x, b.x), Mathf.Min(a.y, b.y), IntZ()), tile, Mathf.Min(a.x, b.x), Mathf.Min(a.y, b.y), Mathf.Max(a.x, b.x), Mathf.Max(a.y, b.y));
+		for (int x = Mathf.Min(a.x, b.x); x <= Mathf.Max(a.x, b.x); x++) for (int y = Mathf.Min(a.y, b.y); y <= Mathf.Max(a.y, b.y); y++) tilesPos.Add(new Vector2Int(x, y));
 	}
 
 	public bool TileType<T>(int x, int y) {
