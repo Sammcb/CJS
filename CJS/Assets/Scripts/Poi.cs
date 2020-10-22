@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class PoiTile: Tile {
 }
 
-public class Poi: CollideLevelTile {
+public class Poi: RigidLevelTile {
 	new private void Awake() {
 		base.Awake();
 		PoiTile t = ScriptableObject.CreateInstance<PoiTile>();

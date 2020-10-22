@@ -13,8 +13,8 @@ public class CollideLevelTile: LevelTile {
 		tmc = gameObject.AddComponent(typeof(TilemapCollider2D)) as TilemapCollider2D;
 		rb = gameObject.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
 		cc = gameObject.AddComponent(typeof(CompositeCollider2D)) as CompositeCollider2D;
-
-		rb.bodyType = RigidbodyType2D.Static;
 		tmc.usedByComposite = true;
+		rb.bodyType = RigidbodyType2D.Static;
+		cc.isTrigger = true;
 	}
 }

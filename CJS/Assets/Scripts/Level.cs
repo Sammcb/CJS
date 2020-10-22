@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Level: MonoBehaviour {
-	public static int groundZ = 1;
-	public static int wallZ = 0;
-	public static int fireZ = 0;
-	public static int coinZ = 0;
-	public static int poiZ = 0;
+	public static int groundZ = 2;
+	public static int wallZ = 1;
+	public static int fireZ = 1;
+	public static int coinZ = 1;
+	public static int poiZ = 1;
 	public GameObject ground;
 	public GameObject walls;
 	public GameObject fire;
@@ -39,7 +39,8 @@ public class Level: MonoBehaviour {
 		coin = new GameObject("Coin", typeof(Coin));
 		coin.transform.SetParent(transform);
 		coin.transform.localPosition = Vector3.forward * coinZ;
-		coin.GetComponent<Coin>().FillTiles(new Vector2Int(1, 1), new Vector2Int(1, 1));
+		coin.GetComponent<Coin>().SetPos(new Vector2Int(1, 1));
+		// coin.GetComponent<Coin>().FillTiles(new Vector2Int(1, 1), new Vector2Int(1, 1));
 
 		poi = new GameObject("POI", typeof(Poi));
 		poi.transform.SetParent(transform);
