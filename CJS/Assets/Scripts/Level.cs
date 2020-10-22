@@ -26,7 +26,7 @@ public class Level: MonoBehaviour {
 		ground = new GameObject("Ground", typeof(Ground));
 		ground.transform.SetParent(transform);
 		ground.transform.localPosition = Vector3.forward * groundZ;
-		ground.GetComponent<Ground>().FillTiles(new Vector2Int(5, 5), new Vector2Int(-5, -5));
+		ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 10));
 
 		walls = new GameObject("Walls", typeof(Wall));
 		walls.transform.SetParent(transform);
@@ -73,5 +73,6 @@ public class Level: MonoBehaviour {
 
 	public bool InBounds(Vector2Int va, Vector2Int vb) {
 		return Mathf.Min(va.x, vb.x) >= MinX() && Mathf.Max(va.x, vb.x) >= MinY() && Mathf.Min(va.y, vb.y) <= MaxX() && Mathf.Max(va.y, vb.y) <= MaxY();
+		fire.GetComponent<Fire>().FillTiles(new Vector2Int(1, 1), new Vector2Int(4, 4));
 	}
 }

@@ -8,7 +8,7 @@ public class Wall: CollideLevelTile {
 		base.Awake();
 		Tile t = ScriptableObject.CreateInstance<Tile>();
 		t.sprite = allSprites[0];
-		tiles.Add(t);
+		tile = t;
 	}
 
 	private bool Touching(int x, int y) {
@@ -19,7 +19,7 @@ public class Wall: CollideLevelTile {
 	}
 
 	public void FillWalls() {
-		Level l = transform.parent.GetComponent<Level>();
-		for (int x = l.MinX(); x <= l.MaxX(); x++) for (int y = l.MinY(); y <= l.MaxY(); y++) if (Touching(x, y)) tm.SetTile(new Vector3Int(x, y, (int) transform.position.z), tiles[0]);
+		BoundsInt b = tm.cellBounds;
+		for (int x = b.min.x; x <= b.max.x; x++) for (int y = b.min.y; y <= b.max.y; y++) if (Touching(x, y)) tm.SetTile(new Vector3Int(x, y, IntZ()), tile);
 	}
 }

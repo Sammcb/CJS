@@ -8,6 +8,6 @@ public class Ground: LevelTile {
 		base.Awake();
 		GroundTile t = ScriptableObject.CreateInstance<GroundTile>();
 		t.sprite = allSprites[5];
-		tiles.Add(t);
+		tile = t;
 	}
 }
