@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class GroundTile: Tile {
+public class PoiTile: Tile {
 }
 
-public class Ground: LevelTile {
+public class Poi: CollideLevelTile {
 	new private void Awake() {
 		base.Awake();
-		GroundTile t = ScriptableObject.CreateInstance<GroundTile>();
-		t.sprite = allSprites[5];
+		PoiTile t = ScriptableObject.CreateInstance<PoiTile>();
+		t.sprite = allSprites[6];
 		tile = t;
 	}
 }

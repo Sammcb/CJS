@@ -3,6 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+public class FireTile: Tile {
+	public Sprite[] sprites;
+	public float animationSpeed = 1;
+	public float animationStartTime = 0;
+
+	public override void GetTileData(Vector3Int location, ITilemap tileMap, ref TileData tileData) {
+		if (sprites != null && sprites.Length > 0) tileData.sprite = sprites[0];
+	}
+
+	public override bool GetTileAnimationData(Vector3Int location, ITilemap tileMap, ref TileAnimationData tileAnimationData) {
+		if (sprites == null || sprites.Length <= 0) return false;
+		tileAnimationData.animatedSprites = sprites;
+		tileAnimationData.animationSpeed = animationSpeed;
+		tileAnimationData.animationStartTime = animationStartTime;
+		return true;
+	}
+}
+
 public class Fire: CollideLevelTile {
 	public static int spreadRate = 10;
 	private List<int> fireTicks = new List<int>();
@@ -29,8 +47,7 @@ public class Fire: CollideLevelTile {
 					for (int x = tilesPos[i].x - 1; x <= tilesPos[i].x + 1; x++) for (int y = tilesPos[i].y - 1; y <= tilesPos[i].y + 1; y++) {
 						Level l = transform.parent.GetComponent<Level>();
 						Wall walls = l.walls.GetComponent<Wall>();
-						if (walls.TileType<Tile>(x, y)) continue;
-						if (TileType<FireTile>(x, y)) continue;
+						if (walls.TileType<Tile>(x, y) || TileType<FireTile>(x, y)) continue;
 						tm.SetTile(new Vector3Int(x, y, IntZ()), tile);
 						newPos.Add(new Vector2Int(x, y));
 					}
