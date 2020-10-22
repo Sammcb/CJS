@@ -6,6 +6,7 @@ public class Player: MonoBehaviour {
 
     #region VARIABLES
     public float moveSpeed = 1.1f;
+    private float range = 2;
     public int coins;
     #endregion
 
@@ -22,7 +23,8 @@ public class Player: MonoBehaviour {
         if(Input.GetMouseButtonDown(0)) {
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouse.z = 0;
-            Debug.DrawRay(transform.position, mouse-transform.position, Color.white, 5);
+            Vector3 direction = Vector3.Normalize(mouse-transform.position) * range;
+            Debug.DrawRay(transform.position, direction, Color.white, 5);
         }
 
     }

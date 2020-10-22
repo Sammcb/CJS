@@ -10,12 +10,10 @@ public class Coin: CollideLevelTile {
     #endregion
 
     new private void Awake() {
-        base.Awake();
-        foreach (int i in new [] {2, 3}) {
-            Tile t = ScriptableObject.CreateInstance<Tile>();
-            t.sprite = allSprites[i];
-            tiles.Add(t);
-        }
+      base.Awake();
+      Tile t = ScriptableObject.CreateInstance<Tile>();
+      t.sprite = allSprites[3];
+      tiles.Add(t);
     }
 
     // called when the player picks up the coin
@@ -24,6 +22,12 @@ public class Coin: CollideLevelTile {
         if(col.rigidbody.name == "Player") {
           Debug.Log("A coin has been picked up!");
           collected = true;
+          Vector3 pos = transform.position;
+          Tile groundTile = ScriptableObject.CreateInstance<Tile>();
+          groundTile.sprite = allSprites[4];
+          tm.SetTile(new Vector3Int((int)pos.x, (int)pos.y, 0), groundTile);
+          //TileBase t = tm.GetTile(new Vector3Int((int)pos.x, (int)pos.y, 0));
+          //t = null;
       }
     }
 
