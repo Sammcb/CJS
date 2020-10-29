@@ -8,6 +8,7 @@ public class Water: MonoBehaviour {
 	private Rigidbody2D rb;
 	private CircleCollider2D cc;
 	private float speed = 3;
+	private float size = 1;
 
 	private void Start() {
 		sr = gameObject.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
@@ -16,6 +17,7 @@ public class Water: MonoBehaviour {
 		rb = gameObject.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
 		cc = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
 		gameObject.layer = LayerMask.NameToLayer("Water");
+		gameObject.tag = "Water";
 	}
 
 	private void Update() {
@@ -24,7 +26,13 @@ public class Water: MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D col) {
-		if (col.gameObject.tag == "Fire") Debug.Log("fire");
+		if (col.gameObject.tag == "Fire") {
+			List<Collider2D> cols = new List<Collider2D>();
+			ContactFilter2D filter = new ContactFilter2D();
+			filter.SetDepth(1, 1);
+			Physics2D.OverlapCircle(transform.position, size, filter, cols);
+			foreach (Collider2D c in cols) Destroy(c.gameObject);
+		}
 		Destroy(gameObject);
 	}
 }

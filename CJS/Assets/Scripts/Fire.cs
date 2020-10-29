@@ -46,4 +46,10 @@ public class Fire: TileEntity {
 			yield return new WaitForSeconds(1);
 		}
 	}
+
+	private void OnDestroy() {
+		Grid g = transform.parent.GetComponent<Grid>();
+		Vector3Int cell = g.WorldToCell(transform.position);
+		transform.parent.GetComponent<Level>().fires.tiles.Remove((Vector2Int) cell);
+	}
 }
