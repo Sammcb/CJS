@@ -3,59 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class FireTile: Tile {
-	public Sprite[] sprites;
-	public float animationSpeed = 1;
-	public float animationStartTime = 0;
+public class Fire: TileEntity {
+	private static int spreadRate = 10;
+	private int tick;
+	private Sprite[] sprites;
+	private int spriteIndex = 0;
 
-	public override void GetTileData(Vector3Int location, ITilemap tileMap, ref TileData tileData) {
-		if (sprites != null && sprites.Length > 0) tileData.sprite = sprites[0];
-	}
-
-	public override bool GetTileAnimationData(Vector3Int location, ITilemap tileMap, ref TileAnimationData tileAnimationData) {
-		if (sprites == null || sprites.Length <= 0) return false;
-		tileAnimationData.animatedSprites = sprites;
-		tileAnimationData.animationSpeed = animationSpeed;
-		tileAnimationData.animationStartTime = animationStartTime;
-		return true;
-	}
-}
-
-public class Fire: CollideLevelTile {
-	public static int spreadRate = 10;
-	private List<int> fireTicks = new List<int>();
-
-	new private void Awake() {
-		base.Awake();
-		FireTile t = ScriptableObject.CreateInstance<FireTile>();
-		t.sprites = new[] {allSprites[1], allSprites[2]};
-		tile = t;
+	new private void Start() {
+		base.Start();
+		Sprite[] allSprites = Resources.LoadAll<Sprite>("Tiles/Hell");
+		sprites = new[] {allSprites[1], allSprites[2]};
+		sr.sprite = sprites[spriteIndex++];
+		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
+		tick = UnityEngine.Random.Range(0, 6);
+		StartCoroutine(Animate());
 		StartCoroutine(SpreadFire());
+		gameObject.tag = "Fire";
 	}
 
-	new public void FillTiles(Vector2Int a, Vector2Int b) {
-		base.FillTiles(a, b);
-		for (int i = 0; i < tilesPos.Count; i++) fireTicks.Add(UnityEngine.Random.Range(0, 6));
+	IEnumerator Animate() {
+		while (true) {
+			sr.sprite = sprites[spriteIndex++ % sprites.Length];
+			yield return new WaitForSeconds(1);
+		}
 	}
 
 	IEnumerator SpreadFire() {
+		Level l = transform.parent.GetComponent<Level>();
+		Wall walls = l.walls.GetComponent<Wall>();
+		Poi pois = l.poi.GetComponent<Poi>();
+		Grid g = l.GetComponent<Grid>();
 		while (true) {
-			List<Vector2Int> newPos = new List<Vector2Int>();
-			for (int i = 0; i < tilesPos.Count; i++) {
-				if (++fireTicks[i] >= spreadRate) {
-					fireTicks[i] = 0;
-					for (int x = tilesPos[i].x - 1; x <= tilesPos[i].x + 1; x++) for (int y = tilesPos[i].y - 1; y <= tilesPos[i].y + 1; y++) {
-						Level l = transform.parent.GetComponent<Level>();
-						Wall walls = l.walls.GetComponent<Wall>();
-						if (walls.TileType<Tile>(x, y) || TileType<FireTile>(x, y)) continue;
-						tm.SetTile(new Vector3Int(x, y, IntZ()), tile);
-						newPos.Add(new Vector2Int(x, y));
-					}
+			if (++tick >= spreadRate) {
+				tick = 0;
+				for (float x = transform.position.x - 1; x <= transform.position.x + 1; x++) for (float y = transform.position.y - 1; y <= transform.position.y + 1; y++) {
+					Vector3Int cell = g.WorldToCell(new Vector3(x, y, z));
+					if (walls.TileType<Tile>(cell.x, cell.y) || l.fires.tiles.Contains((Vector2Int) cell) || UnityEngine.Random.Range(0, 10) < 5) continue;
+					if (pois.TileType<Tile>(cell.x, cell.y)) pois.burn(cell.x, cell.y);
+					l.fires.SetTile((Vector2Int) cell);
 				}
-			}
-			foreach (Vector2Int pos in newPos) {
-				tilesPos.Add(pos);
-				fireTicks.Add(UnityEngine.Random.Range(0, 6));
 			}
 			yield return new WaitForSeconds(1);
 		}
