@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Level: MonoBehaviour {
-	public static int groundZ = 2;
-	public static int wallZ = 1;
+	public static int groundZ = 3;
+	public static int wallZ = 2;
 	public static int fireZ = 1;
-	public static int coinZ = 1;
-	public static int poiZ = 1;
+	public static int coinZ = 2;
+	public static int poiZ = 2;
 	public GameObject ground;
 	public GameObject walls;
-	public GameObject fire;
-	public GameObject coin;
 	public GameObject poi;
+	public TileEntityManager<Fire> fires;
+	public TileEntityManager<Coin> coins;
 	private Grid g;
 
 	private void Awake() {
@@ -31,16 +31,17 @@ public class Level: MonoBehaviour {
 		walls.transform.localPosition = Vector3.forward * wallZ;
 		walls.GetComponent<Wall>().FillWalls();
 
-		fire = new GameObject("Fire", typeof(Fire));
-		fire.transform.SetParent(transform);
-		fire.transform.localPosition = Vector3.forward * fireZ;
-		fire.GetComponent<Fire>().FillTiles(new Vector2Int(4, 4), new Vector2Int(4, 4));
+		fires = new TileEntityManager<Fire>();
+		fires.l = gameObject;
+		fires.tileName = "Fire";
+		fires.z = fireZ;
+		fires.FillTiles(new Vector2Int(4, 4), new Vector2Int(5, 5));
 
-		coin = new GameObject("Coin", typeof(Coin));
-		coin.transform.SetParent(transform);
-		coin.transform.localPosition = Vector3.forward * coinZ;
-		coin.GetComponent<Coin>().SetPos(new Vector2Int(1, 1));
-		// coin.GetComponent<Coin>().FillTiles(new Vector2Int(1, 1), new Vector2Int(1, 1));
+		coins = new TileEntityManager<Coin>();
+		coins.l = gameObject;
+		coins.tileName = "Coin";
+		coins.z = coinZ;
+		coins.SetTile(new Vector2Int(1, 1));
 
 		poi = new GameObject("POI", typeof(Poi));
 		poi.transform.SetParent(transform);

@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,11 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - title
+=======
+  - Player
+>>>>>>> e00a8759ec1a0bc52d632f74a30099d7e9568518
   - 
   - 
   - 

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Player: TileEntity {
 	public int coins = 0;
 	private Rigidbody2D rb;
-	private float range = 2;
-	private float moveSpeed = 3;
+	private float range = 10;
+	private float speed = 3;
 
 	new protected void Start() {
 		base.Start();
@@ -14,19 +14,19 @@ public class Player: TileEntity {
 		c = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
 		rb = gameObject.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
 		gameObject.tag = "Player";
+		gameObject.layer = LayerMask.NameToLayer("Player");
 	}
 
 	private void Update() {
-		// Movement
-		Vector3 movement = (Vector3.up * Input.GetAxis("Vertical")) + (Vector3.right * Input.GetAxis("Horizontal"));
-		transform.Translate(Vector3.Normalize(movement) * Time.deltaTime * moveSpeed);
+		Vector3 move = Vector3.up * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
+		transform.Translate(Vector3.Normalize(move) * Time.deltaTime * speed);
 
-		// Fire hose
 		if(Input.GetMouseButtonDown(0)) {
-			Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			mouse.z = 0;
-			Vector3 direction = Vector3.Normalize(mouse-transform.position) * range;
-			Debug.DrawRay(transform.position, direction, Color.white, 5);
+			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector2 dir = Vector3.Normalize(pos - transform.position) * range;
+			GameObject water = new GameObject("Water", typeof(Water));
+			water.transform.position = transform.position;
+			water.GetComponent<Water>().end = transform.position + new Vector3(dir.x, dir.y, 0);
 		}
 
 	}
