@@ -23,10 +23,11 @@ public class Player: TileEntity {
 
 		if(Input.GetMouseButtonDown(0)) {
 			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Vector2 dir = Vector3.Normalize(pos - transform.position) * range;
+			Vector3 dir = pos - transform.position;
+			dir.z = 0;
 			GameObject water = new GameObject("Water", typeof(Water));
 			water.transform.position = transform.position;
-			water.GetComponent<Water>().end = transform.position + new Vector3(dir.x, dir.y, 0);
+			water.GetComponent<Water>().end = transform.position + Vector3.Normalize(dir) * range;
 		}
 
 	}
