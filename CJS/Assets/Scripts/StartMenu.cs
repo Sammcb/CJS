@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 
 // Followed the tutorial from hw5 https://youtu.be/zc8ac_qUXQY at to make this file
-public class MainMenu : MonoBehaviour
+public class StartMenu : MonoBehaviour
 {
     public void PlayGame()
     {
