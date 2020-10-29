@@ -11,12 +11,12 @@ public class BuildLevel: MonoBehaviour {
 	private void Start() {
 		transform.position = Vector3.zero;
 
+		player = new GameObject("Player", typeof(Player));
+		player.transform.SetParent(transform.parent);
+
 		level = new GameObject("Level", typeof(Level));
 		level.transform.SetParent(transform);
-
-		player = new GameObject("Player", typeof(Player));
-		player.transform.SetParent(transform);
-		player.GetComponent<Player>().SetPos(new Vector2Int(2, 3));
+		level.GetComponent<Level>().player = player;
 
 		cam = new GameObject("Camera", typeof(Camera), typeof(AudioListener), typeof(PlayerCamera));
 		cam.transform.position = Vector3.forward * -10;

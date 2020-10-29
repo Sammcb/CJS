@@ -8,11 +8,16 @@ public class Level: MonoBehaviour {
 	public static int fireZ = 1;
 	public static int coinZ = 2;
 	public static int poiZ = 2;
+	public static int exitZ = 2;
+	public static int spawnZ = 2;
 	public GameObject ground;
 	public GameObject walls;
 	public GameObject poi;
+	public GameObject spawn;
+	public GameObject exit;
 	public TileEntityManager<Fire> fires;
 	public TileEntityManager<Coin> coins;
+	public GameObject player;
 	private Grid g;
 
 	private void Awake() {
@@ -48,5 +53,17 @@ public class Level: MonoBehaviour {
 		poi.transform.localPosition = Vector3.forward * poiZ;
 		poi.GetComponent<Poi>().FillTiles(new Vector2Int(2, 2), new Vector2Int(2,2));
 
+		exit = new GameObject("Exit", typeof(Exit));
+		exit.transform.SetParent(transform);
+		Exit e = exit.GetComponent<Exit>();
+		e.z = exitZ;
+		e.SetPos(new Vector2Int(9, 9));
+
+		spawn = new GameObject("Spawn", typeof(Spawn));
+		spawn.transform.SetParent(transform);
+		Spawn s = spawn.GetComponent<Spawn>();
+		s.z = spawnZ;
+		s.SetPos(new Vector2Int(2, 3));
+		s.SpawnPlayer(player);
 	}
 }
