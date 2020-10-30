@@ -19,8 +19,6 @@ public class BuildLevel: MonoBehaviour {
 		player.transform.SetParent(transform.parent);
 		player.SetActive(false);
 
-		InitLevel();
-
 		cam = new GameObject("Camera", typeof(Camera), typeof(AudioListener), typeof(PlayerCamera));
 		cam.transform.position = Vector3.forward * -10;
 		cam.tag = "MainCamera";
@@ -29,6 +27,8 @@ public class BuildLevel: MonoBehaviour {
 		c.orthographic = true;
 		c.orthographicSize = 8;
 		c.depth = -1;
+
+		InitLevel();
 	}
 
 	private void InitLevel() {
