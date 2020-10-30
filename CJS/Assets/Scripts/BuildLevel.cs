@@ -16,7 +16,7 @@ public class BuildLevel: MonoBehaviour {
 		transform.position = Vector3.zero;
 
 		player = new GameObject("Player", typeof(Player));
-		player.transform.SetParent(transform.parent);
+		player.transform.SetParent(transform);
 		player.SetActive(false);
 
 		cam = new GameObject("Camera", typeof(Camera), typeof(AudioListener), typeof(PlayerCamera));
