@@ -10,19 +10,16 @@ public class BuildLevel: MonoBehaviour {
 	private GameObject cam;
 	private int levelNum = 0;
 
-	private void Start() {
+	private void Awake() {
 		nextLevel = new UnityEvent();
 		nextLevel.AddListener(NextLevel);
 		transform.position = Vector3.zero;
 
 		player = new GameObject("Player", typeof(Player));
 		player.transform.SetParent(transform.parent);
+		player.SetActive(false);
 
-		level = new GameObject("Level", typeof(Level));
-		level.transform.SetParent(transform);
-		Level l = level.GetComponent<Level>();
-		l.player = player;
-		l.nextLevel = nextLevel;
+		InitLevel();
 
 		cam = new GameObject("Camera", typeof(Camera), typeof(AudioListener), typeof(PlayerCamera));
 		cam.transform.position = Vector3.forward * -10;
@@ -32,6 +29,15 @@ public class BuildLevel: MonoBehaviour {
 		c.orthographic = true;
 		c.orthographicSize = 8;
 		c.depth = -1;
+	}
+
+	private void InitLevel() {
+		level = new GameObject("Level", typeof(Level));
+		level.transform.SetParent(transform);
+		Level l = level.GetComponent<Level>();
+		l.player = player;
+		l.nextLevel = nextLevel;
+		l.Init(levelNum);
 	}
 
 	private void NextLevel() {
@@ -44,5 +50,7 @@ public class BuildLevel: MonoBehaviour {
 
 		Debug.Log("Loading level: " + ++levelNum);
 		Debug.Log("Player coins: " + player.GetComponent<Player>().coins);
+
+		InitLevel();
 	}
 }

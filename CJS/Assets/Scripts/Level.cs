@@ -26,49 +26,59 @@ public class Level: MonoBehaviour {
 	private void Awake() {
 		g = gameObject.AddComponent(typeof(Grid)) as Grid;
 		g.cellSize = new Vector3(1, 1, 0);
-	}
 
-	private void Start() {
 		ground = new GameObject("Ground", typeof(Ground));
 		ground.transform.SetParent(transform);
 		ground.transform.localPosition = Vector3.forward * groundZ;
-		ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 10));
 
 		walls = new GameObject("Walls", typeof(Wall));
 		walls.transform.SetParent(transform);
 		walls.transform.localPosition = Vector3.forward * wallZ;
-		walls.GetComponent<Wall>().FillWalls();
 
 		fires = new TileEntityManager<Fire>();
 		fires.l = gameObject;
 		fires.tileName = "Fire";
 		fires.z = fireZ;
-		fires.FillTiles(new Vector2Int(4, 4), new Vector2Int(5, 5));
-
+		
 		coins = new TileEntityManager<Coin>();
 		coins.l = gameObject;
 		coins.tileName = "Coin";
 		coins.z = coinZ;
-		coins.SetTile(new Vector2Int(1, 1));
-
+		
 		pois = new TileEntityManager<Poi>();
 		pois.l = gameObject;
 		pois.tileName = "Poi";
 		pois.z = poiZ;
-		pois.SetTile(new Vector2Int(2, 2));
-
+		
 		exit = new GameObject("Exit", typeof(Exit));
 		exit.transform.SetParent(transform);
-		Exit e = exit.GetComponent<Exit>();
-		e.z = exitZ;
-		e.SetPos(new Vector2Int(9, 9));
-		e.nextLevel = nextLevel;
+		exit.GetComponent<Exit>().z = exitZ;
+		exit.SetActive(false);
 
 		spawn = new GameObject("Spawn", typeof(Spawn));
 		spawn.transform.SetParent(transform);
+		spawn.GetComponent<Spawn>().z = spawnZ;
+		spawn.SetActive(false);
+	}
+
+	public void Init(int level) {
+		Exit e = exit.GetComponent<Exit>();
 		Spawn s = spawn.GetComponent<Spawn>();
-		s.z = spawnZ;
-		s.SetPos(new Vector2Int(2, 3));
+		switch (level) {
+			case 0:
+				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 10));
+				walls.GetComponent<Wall>().FillWalls();
+				fires.FillTiles(new Vector2Int(4, 4), new Vector2Int(5, 5));
+				coins.SetTile(new Vector2Int(1, 1));
+				pois.SetTile(new Vector2Int(2, 2));
+				e.SetPos(new Vector2Int(9, 9));
+				s.SetPos(new Vector2Int(2, 3));
+				break;
+			default:
+				break;
+		}
+		exit.SetActive(true);
+		spawn.SetActive(true);
 		s.SpawnPlayer(player);
 	}
 }

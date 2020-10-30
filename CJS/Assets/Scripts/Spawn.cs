@@ -9,6 +9,7 @@ public class Spawn: TileEntity {
 	}
 
 	public void SpawnPlayer(GameObject player) {
+		player.SetActive(true);
 		player.GetComponent<Player>().SetPos(new Vector2Int((int) transform.position.x, (int) transform.position.y));
 	}
 }
