@@ -66,14 +66,31 @@ public class Level: MonoBehaviour {
 		Spawn s = spawn.GetComponent<Spawn>();
 		switch (level) {
 			case 0:
-				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 10));
+				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(3, 15));
 				walls.GetComponent<Wall>().FillWalls();
-				fires.FillTiles(new Vector2Int(4, 4), new Vector2Int(5, 5));
-				coins.SetTile(new Vector2Int(1, 1));
-				pois.SetTile(new Vector2Int(2, 2));
-				e.SetPos(new Vector2Int(9, 9));
-				s.SetPos(new Vector2Int(2, 3));
+				e.SetPos(new Vector2Int(2, 15));
+				s.SetPos(new Vector2Int(2, 1));
 				break;
+			case 1:
+				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 3));
+				ground.GetComponent<Ground>().FillTiles(new Vector2Int(8, 4), new Vector2Int(10, 15));
+				walls.GetComponent<Wall>().FillWalls();
+				fires.FillTiles(new Vector2Int(9, 13), new Vector2Int(9, 13));
+				//pois.SetTile(new Vector2Int(2, 2));
+				e.SetPos(new Vector2Int(9, 15));
+				s.SetPos(new Vector2Int(1, 1));
+				break;
+			case 3:
+				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(20, 3));
+				walls.GetComponent<Wall>().FillWalls();
+				fires.FillTiles(new Vector2Int(5, 1), new Vector2Int(7,3));
+				s.SetPos(new Vector2Int(10, 2));
+				e.SetPos(new Vector2Int(20, 2));
+				coins.SetTile(new Vector2Int(1, 1));
+				coins.SetTile(new Vector2Int(1, 2));
+				coins.SetTile(new Vector2Int(1, 3));
+				break;
+
 			default:
 				break;
 		}

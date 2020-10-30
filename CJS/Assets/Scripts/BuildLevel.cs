@@ -8,7 +8,7 @@ public class BuildLevel: MonoBehaviour {
 	private GameObject level;
 	private GameObject player;
 	private GameObject cam;
-	private int levelNum = 0;
+	private int levelNum = 0; //change this for testing different levels
 
 	private void Awake() {
 		nextLevel = new UnityEvent();

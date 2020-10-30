@@ -9,7 +9,7 @@ public class Water: MonoBehaviour {
 	private CircleCollider2D cc;
 	private float size = 0.5f;
 	private float speed = 3;
-	private float splash = 1;
+	private float splash = 1; //how big circle 
 
 	private void Start() {
 		sr = gameObject.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;

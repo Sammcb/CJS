@@ -14,7 +14,7 @@ public class LevelTile: MonoBehaviour {
 		allSprites = Resources.LoadAll<Sprite>("Tiles/Hell");
 		tm = gameObject.AddComponent(typeof(Tilemap)) as Tilemap;
 		tmr = gameObject.AddComponent(typeof(TilemapRenderer)) as TilemapRenderer;
-		tm.size = new Vector3Int(20, 20, 0);
+		tm.size = new Vector3Int(50, 50, 0); //max size of level
 	}
 
 	protected int IntZ() {
