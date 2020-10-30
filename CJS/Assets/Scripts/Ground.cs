@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class GroundTile: Tile {
-}
+public class GroundTile: Tile {}
 
 public class Ground: LevelTile {
 	new private void Awake() {

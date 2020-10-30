@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-public class Poi: RigidLevelTile {
-	new private void Awake() {
-		base.Awake();
-		Tile t = ScriptableObject.CreateInstance<Tile>();
-		t.sprite = allSprites[6];
-		tile = t;
+public class Poi: TileEntity {
+	public int amount;
+
+	new protected void Start() {
+		base.Start();
+		sr.sprite = Resources.LoadAll<Sprite>("Tiles/Hell")[6];
+		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
+		amount = UnityEngine.Random.Range(20, 30);
 	}
 
-	public void burn(int x, int y) {
-		
+	public bool Saved() {
+		return gameObject.activeSelf;
+	}
+
+	public void Burn() {
+		gameObject.SetActive(false);
 	}
 }

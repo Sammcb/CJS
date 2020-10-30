@@ -31,15 +31,15 @@ public class Fire: TileEntity {
 	IEnumerator SpreadFire() {
 		Level l = transform.parent.GetComponent<Level>();
 		Wall walls = l.walls.GetComponent<Wall>();
-		Poi pois = l.poi.GetComponent<Poi>();
 		Grid g = l.GetComponent<Grid>();
 		while (true) {
 			if (++tick >= spreadRate) {
 				tick = 0;
 				for (float x = transform.position.x - 1; x <= transform.position.x + 1; x++) for (float y = transform.position.y - 1; y <= transform.position.y + 1; y++) {
 					Vector3Int cell = g.WorldToCell(new Vector3(x, y, z));
-					if (walls.TileType<Tile>(cell.x, cell.y) || l.fires.tiles.Contains((Vector2Int) cell) || UnityEngine.Random.Range(0, 10) < 5) continue;
-					if (pois.TileType<Tile>(cell.x, cell.y)) pois.burn(cell.x, cell.y);
+					if (walls.TileType<WallTile>(cell.x, cell.y) || l.fires.tiles.Contains((Vector2Int) cell) || UnityEngine.Random.Range(0, 10) < 5) continue;
+					if (l.coins.tiles.Contains((Vector2Int) cell)) l.coins.Tile((Vector2Int) cell).Burn();
+					if (l.pois.tiles.Contains((Vector2Int) cell)) l.pois.Tile((Vector2Int) cell).Burn();
 					l.fires.SetTile((Vector2Int) cell);
 				}
 			}

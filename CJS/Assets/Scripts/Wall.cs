@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+public class WallTile: Tile {}
+
 public class Wall: RigidLevelTile {
 	new private void Awake() {
 		base.Awake();
-		Tile t = ScriptableObject.CreateInstance<Tile>();
+		WallTile t = ScriptableObject.CreateInstance<WallTile>();
 		t.sprite = allSprites[0];
 		tile = t;
 	}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Level: MonoBehaviour {
 	public static int groundZ = 3;
@@ -17,7 +18,9 @@ public class Level: MonoBehaviour {
 	public GameObject exit;
 	public TileEntityManager<Fire> fires;
 	public TileEntityManager<Coin> coins;
+	public TileEntityManager<Poi> pois;
 	public GameObject player;
+	public UnityEvent nextLevel;
 	private Grid g;
 
 	private void Awake() {
@@ -48,16 +51,18 @@ public class Level: MonoBehaviour {
 		coins.z = coinZ;
 		coins.SetTile(new Vector2Int(1, 1));
 
-		poi = new GameObject("POI", typeof(Poi));
-		poi.transform.SetParent(transform);
-		poi.transform.localPosition = Vector3.forward * poiZ;
-		poi.GetComponent<Poi>().FillTiles(new Vector2Int(2, 2), new Vector2Int(2,2));
+		pois = new TileEntityManager<Poi>();
+		pois.l = gameObject;
+		pois.tileName = "Poi";
+		pois.z = poiZ;
+		pois.SetTile(new Vector2Int(2, 2));
 
 		exit = new GameObject("Exit", typeof(Exit));
 		exit.transform.SetParent(transform);
 		Exit e = exit.GetComponent<Exit>();
 		e.z = exitZ;
 		e.SetPos(new Vector2Int(9, 9));
+		e.nextLevel = nextLevel;
 
 		spawn = new GameObject("Spawn", typeof(Spawn));
 		spawn.transform.SetParent(transform);

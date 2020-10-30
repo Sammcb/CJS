@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Exit: TileEntity {
+	public UnityEvent nextLevel;
+
 	new protected void Start() {
 		base.Start();
 		sr.sprite = Resources.LoadAll<Sprite>("Tiles/Hell")[13];
@@ -11,6 +14,6 @@ public class Exit: TileEntity {
 	}
 
 	private void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.tag == "Player") col.gameObject.SetActive(false);
+		if (col.gameObject.tag == "Player") nextLevel.Invoke();
 	}
 }
