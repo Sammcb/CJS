@@ -90,7 +90,32 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(1, 2));
 				coins.SetTile(new Vector2Int(1, 3));
 				break;
-
+			case 4:
+				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(5, 15));
+				s.SetPos(new Vector2Int(3, 1));
+				e.SetPos(new Vector2Int(3, 15));
+				pois.SetTile(new Vector2Int(3, 10));
+				fires.FillTiles(new Vector2Int(1, 5), new Vector2Int(5,7));
+				walls.GetComponent<Wall>().FillWalls();
+				coins.SetTile(new Vector2Int(5, 15));
+				coins.SetTile(new Vector2Int(1, 15));
+				break;
+			case 5:
+				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(11, 10));
+				walls.GetComponent<Wall>().FillWalls();
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(3,1), new Vector2Int(3, 8));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(6,3), new Vector2Int(6, 10));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(9,1), new Vector2Int(9, 8));
+				s.SetPos(new Vector2Int(1, 1));
+				e.SetPos(new Vector2Int(11,1));
+				coins.SetTile(new Vector2Int(2,5));
+				coins.SetTile(new Vector2Int(5,6));
+				coins.SetTile(new Vector2Int(7,6));
+				coins.SetTile(new Vector2Int(10,5));
+				fires.FillTiles(new Vector2Int(1, 9), new Vector2Int(5,10));
+				fires.FillTiles(new Vector2Int(4, 1), new Vector2Int(8,2));
+				fires.FillTiles(new Vector2Int(7, 9), new Vector2Int(10,10));
+				break;
 			default:
 				break;
 		}
