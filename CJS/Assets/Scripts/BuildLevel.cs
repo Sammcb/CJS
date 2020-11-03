@@ -42,6 +42,9 @@ public class BuildLevel: MonoBehaviour {
 		Level l = level.GetComponent<Level>();
 		l.player = player;
 		l.nextLevel = levelToShop;
+		player.GetComponent<Player>().levelCoins = 0;
+		player.GetComponent<Player>().UpdateText();
+		player.GetComponent<Player>().UpdateText();
 		l.Init(levelNum);
 	}
 

@@ -16,8 +16,11 @@ public class Coin: TileEntity {
 	}
 
 	private void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.tag == "Player") gameObject.SetActive(false);
-		Debug.Log("Coin picked up!");
+		if (col.gameObject.tag == "Player") {
+			gameObject.SetActive(false);
+			Player p = col.gameObject.GetComponent<Player>();
+			p.PickupCoin();
+		}
 	}
 
 	public bool Collected() {
