@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Player: TileEntity {
 	public int coins = 0;
+	public int lives = 3;
 	private Rigidbody2D rb;
-	private float range = 10;
-	private float speed = 3;
+	public float range = 10;
+	public float speed = 3;
 
 	new protected void Start() {
 		base.Start();

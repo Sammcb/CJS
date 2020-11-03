@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class BuildLevel: MonoBehaviour {
-	private UnityEvent nextLevel;
+	public UnityEvent levelToShop;
+	public UnityEvent nextLevel;
 	private GameObject level;
-	private GameObject player;
+	public GameObject player;
 	private GameObject cam;
 	private int levelNum = 0; //change this for testing different levels
+	public GameObject world;
+	public GameObject shop;
 
 	private void Awake() {
+		levelToShop = new UnityEvent();
 		nextLevel = new UnityEvent();
+		levelToShop.AddListener(LevelToShop);
 		nextLevel.AddListener(NextLevel);
 		transform.position = Vector3.zero;
 
@@ -40,7 +45,7 @@ public class BuildLevel: MonoBehaviour {
 		l.Init(levelNum);
 	}
 
-	private void NextLevel() {
+	private void LevelToShop() {
 		Level l = level.GetComponent<Level>();
 		player.SetActive(false);
 		Player p = player.GetComponent<Player>();
@@ -48,9 +53,21 @@ public class BuildLevel: MonoBehaviour {
 		foreach (Poi poi in l.pois.objects) if (poi.Saved()) p.coins += poi.amount;
 		Destroy(level);
 
+		GameObject world = GameObject.Find("World");
+		GameObject shop = GameObject.Find("ShopMenu");
+		world.SetActive(false);
+		shop.SetActive(true);
+
+	}
+
+	private void NextLevel() {
 		Debug.Log("Loading level: " + ++levelNum);
 		Debug.Log("Player coins: " + player.GetComponent<Player>().coins);
-
+		
+		world = GameObject.Find("World");
+		shop = GameObject.Find("ShopMenu");
+		world.SetActive(true);
+		shop.SetActive(false);
 		InitLevel();
 	}
 }
