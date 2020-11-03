@@ -116,6 +116,36 @@ public class Level: MonoBehaviour {
 				fires.FillTiles(new Vector2Int(4, 1), new Vector2Int(8,2));
 				fires.FillTiles(new Vector2Int(7, 9), new Vector2Int(10,10));
 				break;
+			case 6:
+				ground.GetComponent<Ground>().FillTiles(new Vector2Int(2,2), new Vector2Int(34,19));
+				walls.GetComponent<Wall>().FillWalls();
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(5,5), new Vector2Int(13,5));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(5,6), new Vector2Int(5,14));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(6,14), new Vector2Int(10,14));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(10,14), new Vector2Int(10,8));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(14,5), new Vector2Int(14,16));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(15,16), new Vector2Int(29,16));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(29,16), new Vector2Int(29,2));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(18,2), new Vector2Int(18,12));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(19,12), new Vector2Int(25,12));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(25,12), new Vector2Int(25,4));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(25,4), new Vector2Int(21,4));
+				walls.GetComponent<Wall>().FillTiles(new Vector2Int(21,5), new Vector2Int(21,9));
+				s.SetPos(new Vector2Int(2,2));
+				e.SetPos(new Vector2Int(32,2));
+				fires.FillTiles(new Vector2Int(8,2), new Vector2Int(11,4));
+				fires.FillTiles(new Vector2Int(11,12), new Vector2Int(13,14));
+				fires.FillTiles(new Vector2Int(18,13), new Vector2Int(21,15));
+				fires.FillTiles(new Vector2Int(26,2), new Vector2Int(28,7));
+				fires.FillTiles(new Vector2Int(29, 11), new Vector2Int(34,14));
+				coins.FillTiles(new Vector2Int(22,5), new Vector2Int(24,7));
+				coins.SetTile(new Vector2Int(6, 13));
+				coins.SetTile(new Vector2Int(9, 13));
+				coins.SetTile(new Vector2Int(32,1));
+				pois.FillTiles(new Vector2Int(7, 11), new Vector2Int(8,12));
+
+				break;
+
 			default:
 				break;
 		}

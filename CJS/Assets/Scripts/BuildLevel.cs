@@ -9,7 +9,7 @@ public class BuildLevel: MonoBehaviour {
 	private GameObject level;
 	public GameObject player;
 	private GameObject cam;
-	private int levelNum = 0; //change this for testing different levels
+	private int levelNum = 6; //change this for testing different levels
 	public GameObject world;
 	public GameObject shop;
 
