@@ -11,11 +11,13 @@ public class Coin: TileEntity {
 		sr.sprite = Resources.LoadAll<Sprite>("Tiles/Hell")[3];
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		c.isTrigger = true;
-		amount = UnityEngine.Random.Range(5, 10);
+		//amount = UnityEngine.Random.Range(5, 10);
+		amount = 1;
 	}
 
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "Player") gameObject.SetActive(false);
+		Debug.Log("Coin picked up!");
 	}
 
 	public bool Collected() {

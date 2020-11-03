@@ -41,7 +41,7 @@ public class BuildLevel: MonoBehaviour {
 		level.transform.SetParent(transform);
 		Level l = level.GetComponent<Level>();
 		l.player = player;
-		l.nextLevel = nextLevel;
+		l.nextLevel = levelToShop;
 		l.Init(levelNum);
 	}
 
@@ -50,12 +50,11 @@ public class BuildLevel: MonoBehaviour {
 		player.SetActive(false);
 		Player p = player.GetComponent<Player>();
 		foreach (Coin coin in l.coins.objects) if (coin.Collected()) p.coins += coin.amount;
+		Debug.Log("Player coins =  " + p.coins);
 		foreach (Poi poi in l.pois.objects) if (poi.Saved()) p.coins += poi.amount;
 		Destroy(level);
 
-		GameObject world = GameObject.Find("World");
-		GameObject shop = GameObject.Find("ShopMenu");
-		world.SetActive(false);
+		level.SetActive(false);
 		shop.SetActive(true);
 
 	}
@@ -64,10 +63,8 @@ public class BuildLevel: MonoBehaviour {
 		Debug.Log("Loading level: " + ++levelNum);
 		Debug.Log("Player coins: " + player.GetComponent<Player>().coins);
 		
-		world = GameObject.Find("World");
-		shop = GameObject.Find("ShopMenu");
-		world.SetActive(true);
 		shop.SetActive(false);
+
 		InitLevel();
 	}
 }
