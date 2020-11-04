@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class BuildLevel: MonoBehaviour {
-	public UnityEvent levelToShop;
+	public UnityEvent toShop;
 	public UnityEvent nextLevel;
 	private GameObject level;
 	public GameObject player;
@@ -14,9 +14,9 @@ public class BuildLevel: MonoBehaviour {
 	public GameObject shop;
 
 	private void Awake() {
-		levelToShop = new UnityEvent();
+		toShop = new UnityEvent();
 		nextLevel = new UnityEvent();
-		levelToShop.AddListener(LevelToShop);
+		toShop.AddListener(ToShop);
 		nextLevel.AddListener(NextLevel);
 		transform.position = Vector3.zero;
 
@@ -41,14 +41,14 @@ public class BuildLevel: MonoBehaviour {
 		level.transform.SetParent(transform);
 		Level l = level.GetComponent<Level>();
 		l.player = player;
-		l.nextLevel = levelToShop;
+		l.toShop = toShop;
 		player.GetComponent<Player>().levelCoins = 0;
 		player.GetComponent<Player>().UpdateText();
 		player.GetComponent<Player>().UpdateText();
 		l.Init(levelNum);
 	}
 
-	private void LevelToShop() {
+	private void ToShop() {
 		Level l = level.GetComponent<Level>();
 		player.SetActive(false);
 		Player p = player.GetComponent<Player>();
@@ -56,18 +56,12 @@ public class BuildLevel: MonoBehaviour {
 		Debug.Log("Player coins =  " + p.coins);
 		foreach (Poi poi in l.pois.objects) if (poi.Saved()) p.coins += poi.amount;
 		Destroy(level);
-
-		level.SetActive(false);
 		shop.SetActive(true);
-
 	}
 
 	private void NextLevel() {
-		Debug.Log("Loading level: " + ++levelNum);
-		Debug.Log("Player coins: " + player.GetComponent<Player>().coins);
-		
+		levelNum++;
 		shop.SetActive(false);
-
 		InitLevel();
 	}
 }

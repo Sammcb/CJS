@@ -20,7 +20,7 @@ public class Level: MonoBehaviour {
 	public TileEntityManager<Coin> coins;
 	public TileEntityManager<Poi> pois;
 	public GameObject player;
-	public UnityEvent nextLevel;
+	public UnityEvent toShop;
 	private Grid g;
 
 	private void Awake() {
@@ -76,11 +76,10 @@ public class Level: MonoBehaviour {
 				ground.GetComponent<Ground>().FillTiles(new Vector2Int(8, 4), new Vector2Int(10, 15));
 				walls.GetComponent<Wall>().FillWalls();
 				fires.FillTiles(new Vector2Int(9, 13), new Vector2Int(9, 13));
-				//pois.SetTile(new Vector2Int(2, 2));
 				e.SetPos(new Vector2Int(9, 15));
 				s.SetPos(new Vector2Int(1, 1));
 				break;
-			case 3:
+			case 2:
 				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(20, 3));
 				walls.GetComponent<Wall>().FillWalls();
 				fires.FillTiles(new Vector2Int(5, 1), new Vector2Int(7,3));
@@ -90,7 +89,7 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(1, 2));
 				coins.SetTile(new Vector2Int(1, 3));
 				break;
-			case 4:
+			case 3:
 				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(5, 15));
 				s.SetPos(new Vector2Int(3, 1));
 				e.SetPos(new Vector2Int(3, 15));
@@ -100,7 +99,7 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(5, 15));
 				coins.SetTile(new Vector2Int(1, 15));
 				break;
-			case 5:
+			case 4:
 				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(11, 10));
 				walls.GetComponent<Wall>().FillWalls();
 				walls.GetComponent<Wall>().FillTiles(new Vector2Int(3,1), new Vector2Int(3, 8));
@@ -116,7 +115,7 @@ public class Level: MonoBehaviour {
 				fires.FillTiles(new Vector2Int(4, 1), new Vector2Int(8,2));
 				fires.FillTiles(new Vector2Int(7, 9), new Vector2Int(10,10));
 				break;
-			case 6:
+			case 5:
 				ground.GetComponent<Ground>().FillTiles(new Vector2Int(2,2), new Vector2Int(34,19));
 				walls.GetComponent<Wall>().FillWalls();
 				walls.GetComponent<Wall>().FillTiles(new Vector2Int(5,5), new Vector2Int(13,5));
@@ -143,9 +142,7 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(9, 13));
 				coins.SetTile(new Vector2Int(32,1));
 				pois.FillTiles(new Vector2Int(7, 11), new Vector2Int(8,12));
-
 				break;
-
 			default:
 				break;
 		}
