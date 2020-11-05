@@ -41,6 +41,7 @@ public class BuildLevel: MonoBehaviour {
 		c.orthographic = true;
 		c.orthographicSize = 8;
 		c.depth = -1;
+		c.backgroundColor = Color.black;
 
 		InitLevel();
 	}
