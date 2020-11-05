@@ -136,7 +136,7 @@ public class Level: MonoBehaviour {
 				fires.FillTiles(new Vector2Int(11,12), new Vector2Int(13,14));
 				fires.FillTiles(new Vector2Int(18,13), new Vector2Int(21,15));
 				fires.FillTiles(new Vector2Int(26,2), new Vector2Int(28,7));
-				fires.FillTiles(new Vector2Int(29, 11), new Vector2Int(34,14));
+				fires.FillTiles(new Vector2Int(30, 11), new Vector2Int(34,14));
 				coins.FillTiles(new Vector2Int(22,5), new Vector2Int(24,7));
 				coins.SetTile(new Vector2Int(6, 13));
 				coins.SetTile(new Vector2Int(9, 13));
