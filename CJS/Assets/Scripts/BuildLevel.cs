@@ -2,29 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class BuildLevel: MonoBehaviour {
 	public UnityEvent toShop;
 	public UnityEvent nextLevel;
+	public UnityEvent die;
 	private GameObject level;
 	public GameObject player;
 	private GameObject cam;
 	private int levelNum = 0; //change this for testing different levels
 	private int maxLevel = 5;
-	public GameObject world;
 	public GameObject shopParentMenu;
 	public GameObject shopChildMenu;
 
 	private void Awake() {
 		toShop = new UnityEvent();
 		nextLevel = new UnityEvent();
+		die = new UnityEvent();
 		toShop.AddListener(ToShop);
 		nextLevel.AddListener(NextLevel);
+		die.AddListener(Die);
+
 		transform.position = Vector3.zero;
 
 		player = new GameObject("Player", typeof(Player));
 		player.transform.SetParent(transform);
-		player.GetComponent<Player>().z = 0;
+		Player p = player.GetComponent<Player>();
+		p.z = 0;
+		p.die = die;
 		player.SetActive(false);
 
 		cam = new GameObject("Camera", typeof(Camera), typeof(AudioListener), typeof(PlayerCamera));
@@ -58,7 +64,10 @@ public class BuildLevel: MonoBehaviour {
 		foreach (Poi poi in l.pois.objects) if (poi.Saved()) p.coins += poi.amount;
 		player.GetComponent<Player>().UpdateText();
 		Destroy(level);
-		if (levelNum == maxLevel) Debug.Log("win");
+		if (levelNum == maxLevel) {
+			Win();
+			return;
+		}
 		shopParentMenu.SetActive(true);
 		shopChildMenu.GetComponent<ShopMenu>().UpdateShop();
 	}
@@ -67,5 +76,32 @@ public class BuildLevel: MonoBehaviour {
 		levelNum++;
 		shopParentMenu.SetActive(false);
 		InitLevel();
+	}
+
+	private void Die() {
+		Player p = player.GetComponent<Player>();
+		p.lives--;
+		p.UpdateText();
+		Destroy(level);
+		if (p.lives < 0) {
+			Lose();
+			return;
+		}
+		InitLevel();
+	}
+
+	private void Clean() {
+		Destroy(player);
+		Destroy(cam);
+	}
+
+	private void Win() {
+		Clean();
+		SceneManager.LoadScene("Win");
+	}
+
+	private void Lose() {
+		Clean();
+		SceneManager.LoadScene("Game Over");
 	}
 }

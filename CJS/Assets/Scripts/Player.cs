@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player: AnimatedTileEntity {
 	public int coins = 0;
@@ -11,6 +12,7 @@ public class Player: AnimatedTileEntity {
 	public float speed = 3;
 	public StatsDisplay coinsText;
 	public StatsDisplay livesText;
+	public UnityEvent die;
 	private float maxShootDelay = 0.5f;
 	private float shootDelay;
 
@@ -81,6 +83,6 @@ public class Player: AnimatedTileEntity {
 	}
 
 	private void OnCollisionEnter2D(Collision2D col) {
-		if (col.gameObject.tag == "Fire") Debug.Log("dead");
+		if (col.gameObject.tag == "Fire") die.Invoke();
 	}
 }
