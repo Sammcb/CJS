@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snowball: MonoBehaviour {
+public class Snowball: AnimatedTileEntity {
 	public Vector3 end;
-	private SpriteRenderer sr;
 	private Rigidbody2D rb;
-	private CircleCollider2D cc;
 	private float size = 0.5f;
 	private float speed = 3;
 	private float splash = 1; //how big circle 
 
-	private void Start() {
-		sr = gameObject.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
-		sr.sprite = Resources.LoadAll<Sprite>("Sprites/snowball")[0];
+	new private void Start() {
+		base.Start();
+		sprites = Resources.LoadAll<Sprite>("Sprites/snowball");
+		sr.sprite = sprites[0];
+		delay = 0.3f;
+		StartCoroutine(Animate());
 		transform.localScale = Vector3.one * size;
 		rb = gameObject.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
-		cc = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
-		gameObject.layer = LayerMask.NameToLayer("Water");
-		gameObject.tag = "Water";
+		c = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
+		gameObject.layer = LayerMask.NameToLayer("Snowball");
+		gameObject.tag = "Snowball";
 	}
 
 	private void Update() {

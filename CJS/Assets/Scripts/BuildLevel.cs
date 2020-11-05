@@ -10,6 +10,7 @@ public class BuildLevel: MonoBehaviour {
 	public GameObject player;
 	private GameObject cam;
 	private int levelNum = 0; //change this for testing different levels
+	private int maxLevel = 5;
 	public GameObject world;
 	public GameObject shopParentMenu;
 	public GameObject shopChildMenu;
@@ -55,9 +56,9 @@ public class BuildLevel: MonoBehaviour {
 		Player p = player.GetComponent<Player>();
 		foreach (Coin coin in l.coins.objects) if (coin.Collected()) p.coins += coin.amount;
 		foreach (Poi poi in l.pois.objects) if (poi.Saved()) p.coins += poi.amount;
-		Debug.Log("Player coins =  " + p.coins);
 		player.GetComponent<Player>().UpdateText();
 		Destroy(level);
+		if (levelNum == maxLevel) Debug.Log("win");
 		shopParentMenu.SetActive(true);
 		shopChildMenu.GetComponent<ShopMenu>().UpdateShop();
 	}

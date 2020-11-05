@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player: TileEntity {
+public class Player: AnimatedTileEntity {
 	public int coins = 0;
 	public int levelCoins = 0;
 	public int lives = 3;
@@ -11,15 +11,33 @@ public class Player: TileEntity {
 	public float speed = 3;
 	public StatsDisplay coinsText;
 	public StatsDisplay livesText;
+	private float maxShootDelay = 0.5f;
+	private float shootDelay;
 
 	new protected void Start() {
 		base.Start();
-		sr.sprite = Resources.Load<Sprite>("Sprites/player");
+		sprites = Resources.LoadAll<Sprite>("Sprites/player");
+		sr.sprite = sprites[0];
+		delay = 5;
+		StartCoroutine(Animate());
 		c = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
 		((CircleCollider2D) c).radius = 0.3f;
 		rb = gameObject.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("Player");
+		shootDelay = maxShootDelay;
+	}
+
+	new protected IEnumerator Animate() {
+		while (true) {
+			spriteIndex = ++spriteIndex % sprites.Length;
+			sr.sprite = sprites[spriteIndex];
+			if (spriteIndex == 0) {
+				yield return new WaitForSeconds(0.2f);
+				continue;
+			}
+			yield return new WaitForSeconds(delay);
+		}
 	}
 
 	private void Update() {
@@ -29,10 +47,15 @@ public class Player: TileEntity {
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
-		if(Input.GetMouseButtonDown(0)) {
+		if (shootDelay < maxShootDelay) shootDelay += Time.deltaTime;
+
+		if(Input.GetMouseButtonDown(0) && shootDelay >= maxShootDelay) {
 			GameObject snowball = new GameObject("Snowball", typeof(Snowball));
-			snowball.transform.position = transform.position;
-			snowball.GetComponent<Snowball>().end = transform.position + Vector3.Normalize(transform.up) * range;
+			Snowball sb = snowball.GetComponent<Snowball>();
+			sb.z = z - 1;
+			sb.end = transform.position + Vector3.Normalize(transform.up) * range;
+			sb.SetRawPos(transform.position + transform.up * 0.2f);
+			shootDelay = 0;
 		}
 	}
 
@@ -55,5 +78,9 @@ public class Player: TileEntity {
 		livesText = GameObject.Find("Lives").GetComponent<StatsDisplay>();
 		coinsText.UpdateText(coins);
 		livesText.UpdateText(lives);
+	}
+
+	private void OnCollisionEnter2D(Collision2D col) {
+		if (col.gameObject.tag == "Fire") Debug.Log("dead");
 	}
 }
