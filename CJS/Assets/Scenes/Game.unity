@@ -1333,31 +1333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eece8e1b208ea4d6aae615b40ff3395f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToShop:
+  toShop:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 735911185}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 982661628}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   nextLevel:
     m_PersistentCalls:
       m_Calls:
@@ -1575,8 +1553,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome adventurer... to Hell. \n\t\t\tDo you have what it takes to extinguish
-    the devilish flames?\n\t\t\t\t\t\t\t\t\tCan you escape this fiery doom?"
+  m_text: A penguin? In hell? Why, you're a bit far from home! It must be a little
+    warm for your taste. Have fun finding your way out.. if you can!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3194,9 +3172,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Move with WASD. Click to fire your hose and extinguish fires. Save as
-    many points of interersts as you can. Use coins to upgrade your hose and abilities.
-    \n\n\n\nGood luck... you'll need it."
+  m_text: "Move with WASD or arrow keys. Click to throw snowballs and extinguish
+    fires. Save as many points of houses as you can. Use coins to upgrade your abilities.
+    \n\n\n\n\t\t\t    Good luck... you'll need it."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3286,7 +3264,7 @@ GameObject:
   - component: {fileID: 1835144463}
   - component: {fileID: 1835144462}
   m_Layer: 5
-  m_Name: MainMenu
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
