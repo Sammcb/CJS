@@ -8,10 +8,9 @@ public class Coin: TileEntity {
 
 	new protected void Start() {
 		base.Start();
-		sr.sprite = Resources.LoadAll<Sprite>("Tiles/Hell")[3];
+		sr.sprite = Resources.Load<Sprite>("Sprites/coin");
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		c.isTrigger = true;
-		//amount = UnityEngine.Random.Range(5, 10);
 		amount = 1;
 	}
 

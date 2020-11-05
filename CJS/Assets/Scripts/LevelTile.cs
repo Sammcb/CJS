@@ -7,11 +7,9 @@ public class LevelTile: MonoBehaviour {
 	protected Tilemap tm;
 	protected TilemapRenderer tmr;
 	protected Tile tile;
-	protected Sprite[] allSprites;
 	protected List<Vector2Int> tilesPos = new List<Vector2Int>();
 
 	protected void Awake() {
-		allSprites = Resources.LoadAll<Sprite>("Tiles/Hell");
 		tm = gameObject.AddComponent(typeof(Tilemap)) as Tilemap;
 		tmr = gameObject.AddComponent(typeof(TilemapRenderer)) as TilemapRenderer;
 		tm.size = new Vector3Int(50, 50, 0); //max size of level

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawn: TileEntity {
 	new protected void Start() {
 		base.Start();
-		sr.sprite = Resources.LoadAll<Sprite>("Tiles/Hell")[12];
+		sr.sprite = Resources.Load<Sprite>("Tiles/ground");
 	}
 
 	public void SpawnPlayer(GameObject player) {

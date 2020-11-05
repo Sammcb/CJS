@@ -7,9 +7,8 @@ public class Poi: TileEntity {
 
 	new protected void Start() {
 		base.Start();
-		sr.sprite = Resources.LoadAll<Sprite>("Tiles/Hell")[6];
+		sr.sprite = Resources.Load<Sprite>("Sprites/poi");
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
-		//amount = UnityEngine.Random.Range(20, 30);
 		amount = 2;
 	}
 

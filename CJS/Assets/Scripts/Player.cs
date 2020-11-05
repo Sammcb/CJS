@@ -14,8 +14,9 @@ public class Player: TileEntity {
 
 	new protected void Start() {
 		base.Start();
-		sr.sprite = Resources.Load<Sprite>("Sprites/Circle");
+		sr.sprite = Resources.Load<Sprite>("Sprites/player");
 		c = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
+		((CircleCollider2D) c).radius = 0.3f;
 		rb = gameObject.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("Player");
@@ -23,17 +24,16 @@ public class Player: TileEntity {
 
 	private void Update() {
 		Vector3 move = Vector3.up * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
-		transform.Translate(Vector3.Normalize(move) * Time.deltaTime * speed);
+		transform.Translate(Vector3.Normalize(move) * Time.deltaTime * speed, Space.World);
+
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
 		if(Input.GetMouseButtonDown(0)) {
-			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Vector3 dir = pos - transform.position;
-			dir.z = 0;
-			GameObject water = new GameObject("Water", typeof(Water));
-			water.transform.position = transform.position;
-			water.GetComponent<Water>().end = transform.position + Vector3.Normalize(dir) * range;
+			GameObject snowball = new GameObject("Snowball", typeof(Snowball));
+			snowball.transform.position = transform.position;
+			snowball.GetComponent<Snowball>().end = transform.position + Vector3.Normalize(transform.up) * range;
 		}
-
 	}
 
 	public void PickupCoin() {
@@ -56,5 +56,4 @@ public class Player: TileEntity {
 		coinsText.UpdateText(coins);
 		livesText.UpdateText(lives);
 	}
-
 }

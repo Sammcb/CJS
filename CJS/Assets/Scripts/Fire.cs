@@ -11,8 +11,7 @@ public class Fire: TileEntity {
 
 	new private void Start() {
 		base.Start();
-		Sprite[] allSprites = Resources.LoadAll<Sprite>("Tiles/Hell");
-		sprites = new[] {allSprites[1], allSprites[2]};
+		sprites = Resources.LoadAll<Sprite>("Sprites/Fire");
 		sr.sprite = sprites[spriteIndex++];
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		tick = UnityEngine.Random.Range(0, 6);
