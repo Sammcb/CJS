@@ -909,6 +909,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildLevel: {fileID: 735911187}
+  player: {fileID: 0}
+  button1: {fileID: 208878031}
+  button2: {fileID: 2063597411}
+  button3: {fileID: 1138467798}
+  cost1: {fileID: 985408340}
+  cost2: {fileID: 753222429}
+  cost3: {fileID: 615640730}
 --- !u!1 &388830152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1370,8 @@ MonoBehaviour:
         m_CallState: 2
   player: {fileID: 0}
   world: {fileID: 735911185}
-  shop: {fileID: 982661628}
+  shopParentMenu: {fileID: 982661628}
+  shopChildMenu: {fileID: 354047916}
 --- !u!1 &753222429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +1562,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: A penguin? In hell? Why, you're a bit far from home! It must be a little
-    warm for your taste. Have fun finding your way out.. if you can!
+    warm for your taste. Have fun finding your way out... if you can!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3173,8 +3181,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Move with WASD or arrow keys. Click to throw snowballs and extinguish
-    fires. Save as many points of houses as you can. Use coins to upgrade your abilities.
-    \n\n\n\n\t\t\t    Good luck... you'll need it."
+    fires. Collect coins and save as many houses as you can - each house left standing
+    will earn you 2 coins! Use coins to upgrade your abilities. \n\n\n\n\t\t\t   
+    Good luck... you'll need it."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3980,6 +3989,28 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 354047916}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 388830152}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2089679909
 MonoBehaviour:

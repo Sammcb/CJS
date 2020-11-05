@@ -8,47 +8,49 @@ public class ShopMenu : MonoBehaviour
 {
 
     public BuildLevel buildLevel;
-    private Player player;
+    public Player player;
+    public GameObject button1;
+    public GameObject button2;
+    public GameObject button3;
+    public GameObject cost1;
+    public GameObject cost2;
+    public GameObject cost3;
+    private Color grayedOut;
+    private Color normalColor;
 
-    private void Awake() {
+    private void Start() {
         buildLevel = GameObject.Find("World").GetComponent<BuildLevel>();
         player = buildLevel.player.GetComponent<Player>();
+        UpdateShop();
+    }
 
-        // disable upgrades that player can't afford or are maxed out
-        GameObject button1 = GameObject.Find("Upgrade1Button");
-        GameObject button2 = GameObject.Find("Upgrade2Button");
-        GameObject button3 = GameObject.Find("Upgrade3Button");
-        GameObject cost1 = GameObject.Find("Upgrade1Cost");
-        GameObject cost2 = GameObject.Find("Upgrade2Cost");
-        GameObject cost3 = GameObject.Find("Upgrade3Cost");
+    public void UpdateShop() {
+        if (!player) {
+            player = buildLevel.player.GetComponent<Player>();
+        }
 
         if(player.coins < 3) {
-            button1.GetComponent<Image>().color = Color.gray;
             button1.GetComponent<Button>().interactable = false;
-
-            button2.GetComponent<Image>().color = Color.gray;
             button2.GetComponent<Button>().interactable = false;
-
-            button3.GetComponent<Image>().color = Color.gray;
             button3.GetComponent<Button>().interactable = false;
         }
         if(player.speed >= 8) {
-            button1.GetComponent<Image>().color = Color.gray;
             cost1.GetComponent<TMPro.TextMeshProUGUI>().text = "NO FURTHER UPGRADES";
         }
         if(player.range >= 9) {
-            button2.GetComponent<Image>().color = Color.gray;
             cost2.GetComponent<TMPro.TextMeshProUGUI>().text = "NO FURTHER UPGRADES";
         }
         if(player.lives >= 5) {
-            button3.GetComponent<Image>().color = Color.gray;
             cost3.GetComponent<TMPro.TextMeshProUGUI>().text = "NO FURTHER UPGRADES";
         }
-
     }
 
     public void Done()
     {
+        button1.GetComponent<Button>().interactable = true;
+        button2.GetComponent<Button>().interactable = true;
+        button3.GetComponent<Button>().interactable = true;
+
         Debug.Log("Done with shop.");
         buildLevel.nextLevel.Invoke();
     }
@@ -65,6 +67,7 @@ public class ShopMenu : MonoBehaviour
             Debug.Log("Not enough coins for upgrade 1.");
         }
         player.UpdateText();
+        UpdateShop();
 
     }
 
@@ -80,6 +83,8 @@ public class ShopMenu : MonoBehaviour
             Debug.Log("Not enough coins for upgrade 2.");
         }
         player.UpdateText();
+        UpdateShop();
+
     }
 
     public void BuyUpgrade3()
@@ -94,6 +99,8 @@ public class ShopMenu : MonoBehaviour
             Debug.Log("Not enough coins for upgrade 3.");
         }
         player.UpdateText();
+        UpdateShop();
+
     }
 
 }
