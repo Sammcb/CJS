@@ -12,6 +12,11 @@ public class Poi: TileEntity {
 		amount = 2;
 	}
 
+	new public void SetPos(Vector2Int pos) {
+		transform.localPosition = new Vector3(pos.x + 1, pos.y + 0.5f, z);
+		position = pos;
+	}
+
 	public bool Saved() {
 		return gameObject.activeSelf;
 	}

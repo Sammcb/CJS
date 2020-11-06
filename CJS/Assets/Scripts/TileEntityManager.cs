@@ -8,6 +8,7 @@ public class TileEntityManager<T> where T: TileEntity {
 	public int z;
 	public List<Vector2Int> tiles = new List<Vector2Int>();
 	public List<T> objects = new List<T>();
+	public Vector2Int size = new Vector2Int(1, 1);
 
 	public void SetTile(Vector2Int pos) {
 		GameObject o = new GameObject(tileName, typeof(T));
@@ -15,9 +16,16 @@ public class TileEntityManager<T> where T: TileEntity {
 		te.transform.SetParent(l.transform);
 		te.transform.localPosition = Vector3.forward * z;
 		te.z = z;
-		te.SetPos(pos);
-		tiles.Add(pos);
-		objects.Add(te);
+		if (te.GetType() == typeof(Poi)) {
+			Poi p = te.GetComponent<Poi>();
+			p.SetPos(pos);
+		} else {
+			te.SetPos(pos);
+		}
+		for (int i = 0; i < size.x; i++) for (int n = 0; n < size.y; n++) {
+			tiles.Add(new Vector2Int(pos.x + i, pos.y + n));
+			objects.Add(te);
+		}
 	}
 
 	public void FillTiles(Vector2Int a, Vector2Int b) {

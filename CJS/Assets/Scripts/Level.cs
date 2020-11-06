@@ -49,6 +49,7 @@ public class Level: MonoBehaviour {
 		pois.l = gameObject;
 		pois.tileName = "Poi";
 		pois.z = poiZ;
+		pois.size = new Vector2Int(2, 1);
 		
 		exit = new GameObject("Exit", typeof(Exit));
 		exit.transform.SetParent(transform);
