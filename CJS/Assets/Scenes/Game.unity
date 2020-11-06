@@ -989,9 +989,9 @@ MonoBehaviour:
   button1: {fileID: 208878031}
   button2: {fileID: 2063597411}
   button3: {fileID: 1138467798}
-  cost1: {fileID: 985408340}
-  cost2: {fileID: 753222429}
-  cost3: {fileID: 615640730}
+  buttoncost1: {fileID: 985408340}
+  buttoncost2: {fileID: 753222429}
+  buttoncost3: {fileID: 615640730}
 --- !u!1 &378252611
 GameObject:
   m_ObjectHideFlags: 0

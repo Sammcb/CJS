@@ -12,11 +12,14 @@ public class ShopMenu : MonoBehaviour
     public GameObject button1;
     public GameObject button2;
     public GameObject button3;
-    public GameObject cost1;
-    public GameObject cost2;
-    public GameObject cost3;
+    public GameObject buttoncost1;
+    public GameObject buttoncost2;
+    public GameObject buttoncost3;
     private Color grayedOut;
     private Color normalColor;
+    private int cost1 = 3;
+    private int cost2 = 3;
+    private int cost3 = 3;
 
     private void Start() {
         buildLevel = GameObject.Find("World").GetComponent<BuildLevel>();
@@ -29,19 +32,23 @@ public class ShopMenu : MonoBehaviour
             player = buildLevel.player.GetComponent<Player>();
         }
 
-        if(player.coins < 3) {
+        if(player.coins < cost1) {
             button1.GetComponent<Button>().interactable = false;
+        }
+        if(player.coins < cost2) {
             button2.GetComponent<Button>().interactable = false;
+        }
+        if(player.coins < cost3) {
             button3.GetComponent<Button>().interactable = false;
         }
         if(player.speed >= 8) {
-            cost1.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
+            buttoncost1.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
         }
         if(player.range >= 9) {
-            cost2.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
+            buttoncost2.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
         }
         if(player.lives >= 5) {
-            cost3.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
+            buttoncost3.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
         }
     }
 
@@ -57,11 +64,13 @@ public class ShopMenu : MonoBehaviour
 
     public void BuyUpgrade1()
     {
-        if(player.coins >= 3 && player.speed < 8) {
-           player.coins -= 3;
+        if(player.coins >= cost1 && player.speed < 8) {
+           player.coins -= cost1;
            player.speed++; 
            Debug.Log("Player coins: " + player.coins);
            Debug.Log("Player speed: " + player.speed);
+           cost1++;
+           buttoncost1.GetComponent<TMPro.TextMeshProUGUI>().text = "x" + cost1.ToString();
         }
         else {
             Debug.Log("Not enough coins for upgrade 1.");
@@ -73,11 +82,14 @@ public class ShopMenu : MonoBehaviour
 
     public void BuyUpgrade2()
     {
-        if(player.coins >= 3 && player.range < 9) {
-            player.coins -= 3;
+        if(player.coins >= cost2 && player.range < 9) {
+            player.coins -= cost2;
             player.range += 2;
             Debug.Log("Player coins: " + player.coins);
             Debug.Log("Player range: " + player.range);
+            cost2++;
+            buttoncost2.GetComponent<TMPro.TextMeshProUGUI>().text = "x" + cost2.ToString();
+
         }
         else {
             Debug.Log("Not enough coins for upgrade 2.");
@@ -89,11 +101,13 @@ public class ShopMenu : MonoBehaviour
 
     public void BuyUpgrade3()
     {
-        if(player.coins >= 3 && player.lives < 5) {
-            player.coins -= 3;
+        if(player.coins >= cost3 && player.lives < 5) {
+            player.coins -= cost3;
             player.lives++;
             Debug.Log("Player coins: " + player.coins);
             Debug.Log("Player lives: " + player.lives);
+            cost3++;
+            buttoncost3.GetComponent<TMPro.TextMeshProUGUI>().text = "x" + cost3.ToString();
         }
         else {
             Debug.Log("Not enough coins for upgrade 3.");
