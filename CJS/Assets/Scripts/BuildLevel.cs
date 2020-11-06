@@ -11,7 +11,7 @@ public class BuildLevel: MonoBehaviour {
 	private GameObject level;
 	public GameObject player;
 	private GameObject cam;
-	private int levelNum = 3; //change this for testing different levels
+	private int levelNum = 0; //change this for testing different levels
 	private int maxLevel = 5;
 	public GameObject shopParentMenu;
 	public GameObject shopChildMenu;
