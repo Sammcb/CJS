@@ -141,7 +141,6 @@ public class Level: MonoBehaviour {
 				coins.FillTiles(new Vector2Int(22,5), new Vector2Int(24,7));
 				coins.SetTile(new Vector2Int(6, 13));
 				coins.SetTile(new Vector2Int(9, 13));
-				coins.SetTile(new Vector2Int(32,1));
 				pois.FillTiles(new Vector2Int(7, 11), new Vector2Int(8,12));
 				break;
 			default:

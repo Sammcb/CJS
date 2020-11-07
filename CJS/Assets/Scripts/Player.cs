@@ -36,7 +36,6 @@ public class Player: AnimatedTileEntity {
 
 	new protected IEnumerator Animate() {
 		while (true) {
-			Debug.Log(spriteIndex);
 			spriteIndex = ++spriteIndex % sprites.Length;
 			sr.sprite = sprites[spriteIndex];
 			if (spriteIndex == 0) {
