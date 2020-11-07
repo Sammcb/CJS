@@ -11,6 +11,8 @@ public class Wall: RigidLevelTile {
 		WallTile t = ScriptableObject.CreateInstance<WallTile>();
 		t.sprite = Resources.Load<Sprite>("Tiles/wall");
 		tile = t;
+		gameObject.tag = "Wall";
+		gameObject.layer = LayerMask.NameToLayer("Wall");
 	}
 
 	private bool Touching(int x, int y) {

@@ -42,13 +42,13 @@ public class ShopMenu : MonoBehaviour
             button3.GetComponent<Button>().interactable = false;
         }
         if(player.speed >= 8) {
-            buttoncost1.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
+            buttoncost1.GetComponent<TMPro.TextMeshProUGUI>().text = "MAX";
         }
         if(player.range >= 9) {
-            buttoncost2.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
+            buttoncost2.GetComponent<TMPro.TextMeshProUGUI>().text = "MAX";
         }
         if(player.lives >= 5) {
-            buttoncost3.GetComponent<TMPro.TextMeshProUGUI>().text = "MAXED";
+            buttoncost3.GetComponent<TMPro.TextMeshProUGUI>().text = "MAX";
         }
     }
 
