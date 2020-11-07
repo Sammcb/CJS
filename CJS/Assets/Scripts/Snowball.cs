@@ -7,7 +7,7 @@ public class Snowball: AnimatedTileEntity {
 	private Rigidbody2D rb;
 	private float size = 0.5f;
 	private float speed = 3;
-	private float splash = .75f; //how big circle 
+	private float splash = 0.75f; //how big circle 
 
 	new private void Start() {
 		base.Start();
