@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Player: AnimatedTileEntity {
-	public int coins = 100;
+	public int coins = 0;
 	public int levelCoins = 0;
 	public int lives = 3;
 	public Level level;
