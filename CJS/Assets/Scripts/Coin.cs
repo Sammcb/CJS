@@ -20,8 +20,8 @@ public class Coin: AnimatedTileEntity {
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "Player") {
 			gameObject.SetActive(false);
-			Player p = col.gameObject.GetComponent<Player>();
-			p.PickupCoin();
+			level.collectedCoins += amount;
+			level.world.UpdateStats();
 		}
 	}
 

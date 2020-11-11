@@ -8,8 +8,7 @@ public class Spawn: TileEntity {
 		sr.sprite = Resources.Load<Sprite>("Sprites/spawn");
 	}
 
-	public void SpawnPlayer(GameObject player) {
-		player.SetActive(true);
-		player.GetComponent<Player>().SetPos(new Vector2Int((int) transform.position.x, (int) transform.position.y));
+	public void SpawnPlayer(Player player) {
+		player.SetPos(new Vector2Int((int) transform.position.x, (int) transform.position.y));
 	}
 }

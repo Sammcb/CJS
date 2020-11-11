@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCamera: MonoBehaviour {
-	public GameObject target;
+	public Player target;
 
 	private void Update() {
 		if (target == null) return;

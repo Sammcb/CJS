@@ -4,110 +4,107 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Level: MonoBehaviour {
-	public static int groundZ = 3;
-	public static int wallZ = 2;
-	public static int fireZ = 1;
-	public static int coinZ = 2;
-	public static int poiZ = 2;
-	public static int exitZ = 2;
-	public static int spawnZ = 2;
-	public GameObject ground;
-	public GameObject walls;
-	public GameObject poi;
-	public GameObject spawn;
-	public GameObject exit;
+	public World world;
+	public int baseZ = 3;
+	public Ground ground;
+	public Wall wall;
+	public Spawn spawn;
+	public Exit exit;
 	public TileEntityManager<Fire> fires;
 	public TileEntityManager<Coin> coins;
 	public TileEntityManager<Poi> pois;
-	public GameObject player;
+	public Player player;
 	public UnityEvent toShop;
-	private Grid g;
+	public Grid g;
+	public int collectedCoins = 0;
 
-	private void Awake() {
+	private void BuildObjects() {
+		TileEntity.level = this;
+
 		g = gameObject.AddComponent(typeof(Grid)) as Grid;
 		g.cellSize = new Vector3(1, 1, 0);
 
-		ground = new GameObject("Ground", typeof(Ground));
+		ground = new GameObject("Ground", typeof(Ground)).GetComponent<Ground>();
 		ground.transform.SetParent(transform);
-		ground.transform.localPosition = Vector3.forward * groundZ;
+		ground.transform.localPosition = Vector3.forward * baseZ;
 
-		walls = new GameObject("Walls", typeof(Wall));
-		walls.transform.SetParent(transform);
-		walls.transform.localPosition = Vector3.forward * wallZ;
+		wall = new GameObject("Wall", typeof(Wall)).GetComponent<Wall>();
+		wall.transform.SetParent(transform);
+		wall.transform.localPosition = Vector3.forward * (baseZ - 1);
 
 		fires = new TileEntityManager<Fire>();
 		fires.l = gameObject;
 		fires.tileName = "Fire";
-		fires.z = fireZ;
+		fires.z = baseZ - 2;
 		
 		coins = new TileEntityManager<Coin>();
 		coins.l = gameObject;
 		coins.tileName = "Coin";
-		coins.z = coinZ;
+		coins.z = baseZ - 1;
 		
 		pois = new TileEntityManager<Poi>();
 		pois.l = gameObject;
 		pois.tileName = "Poi";
-		pois.z = poiZ;
+		pois.z = baseZ - 1;
 		pois.size = new Vector2Int(2, 1);
 		
-		exit = new GameObject("Exit", typeof(Exit));
+		exit = new GameObject("Exit", typeof(Exit)).GetComponent<Exit>();
 		exit.transform.SetParent(transform);
-		exit.GetComponent<Exit>().z = exitZ;
-		exit.SetActive(false);
+		exit.z = baseZ - 1;
+		exit.exit = toShop;
 
-		spawn = new GameObject("Spawn", typeof(Spawn));
+		spawn = new GameObject("Spawn", typeof(Spawn)).GetComponent<Spawn>();
 		spawn.transform.SetParent(transform);
-		spawn.GetComponent<Spawn>().z = spawnZ;
-		spawn.SetActive(false);
+		spawn.z = baseZ - 1;
+
+		player = world.BuildPlayer();
 	}
 
 	public void Init(int level) {
-		Exit e = exit.GetComponent<Exit>();
-		Spawn s = spawn.GetComponent<Spawn>();
+		BuildObjects();
 		switch (level) {
 			case 0:
-				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(3, 15));
-				walls.GetComponent<Wall>().FillWalls();
-				e.SetPos(new Vector2Int(2, 15));
-				s.SetPos(new Vector2Int(2, 1));
+				ground.FillTiles(new Vector2Int(1, 1), new Vector2Int(3, 15));
+				wall.FillWalls();
+				exit.SetPos(new Vector2Int(2, 15));
+				spawn.SetPos(new Vector2Int(2, 1));
 				break;
 			case 1:
-				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 3));
-				ground.GetComponent<Ground>().FillTiles(new Vector2Int(8, 4), new Vector2Int(10, 15));
-				walls.GetComponent<Wall>().FillWalls();
+				ground.FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 3));
+				ground.FillTiles(new Vector2Int(8, 4), new Vector2Int(10, 15));
+				wall.FillWalls();
 				fires.FillTiles(new Vector2Int(9, 13), new Vector2Int(9, 13));
-				e.SetPos(new Vector2Int(9, 15));
-				s.SetPos(new Vector2Int(1, 1));
+				exit.SetPos(new Vector2Int(9, 15));
+				spawn.SetPos(new Vector2Int(1, 1));
 				break;
 			case 2:
-				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(20, 3));
-				walls.GetComponent<Wall>().FillWalls();
+				ground.FillTiles(new Vector2Int(1,1), new Vector2Int(20, 3));
+				wall.FillWalls();
 				fires.FillTiles(new Vector2Int(5, 1), new Vector2Int(7,3));
-				s.SetPos(new Vector2Int(10, 2));
-				e.SetPos(new Vector2Int(20, 2));
+				spawn.SetPos(new Vector2Int(10, 2));
+				exit.SetPos(new Vector2Int(20, 2));
 				coins.SetTile(new Vector2Int(1, 1));
 				coins.SetTile(new Vector2Int(1, 2));
 				coins.SetTile(new Vector2Int(1, 3));
 				break;
 			case 3:
-				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(5, 15));
-				s.SetPos(new Vector2Int(3, 1));
-				e.SetPos(new Vector2Int(3, 15));
+				ground.FillTiles(new Vector2Int(1,1), new Vector2Int(5, 15));
+				spawn.SetPos(new Vector2Int(3, 1));
+				exit.SetPos(new Vector2Int(3, 15));
 				pois.SetTile(new Vector2Int(3, 10));
 				fires.FillTiles(new Vector2Int(1, 5), new Vector2Int(5,7));
-				walls.GetComponent<Wall>().FillWalls();
+				wall.FillWalls();
 				coins.SetTile(new Vector2Int(5, 15));
 				coins.SetTile(new Vector2Int(1, 15));
 				break;
 			case 4:
-				ground.GetComponent<Ground>().FillTiles(new Vector2Int(1,1), new Vector2Int(11, 10));
-				walls.GetComponent<Wall>().FillWalls();
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(3,1), new Vector2Int(3, 8));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(6,3), new Vector2Int(6, 10));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(9,1), new Vector2Int(9, 8));
-				s.SetPos(new Vector2Int(1, 1));
-				e.SetPos(new Vector2Int(11,1));
+				ground.FillTiles(new Vector2Int(1,1), new Vector2Int(11, 10));
+				wall.FillWalls();
+				wall.FillTiles(new Vector2Int(3,1), new Vector2Int(3, 8));
+				wall.FillTiles(new Vector2Int(6,3), new Vector2Int(6, 10));
+				wall.FillTiles(new Vector2Int(9,1), new Vector2Int(9, 8));
+				spawn.SetPos(new Vector2Int(1, 1));
+				exit.SetPos(new Vector2Int(11,1));
 				coins.SetTile(new Vector2Int(2,5));
 				coins.SetTile(new Vector2Int(5,6));
 				coins.SetTile(new Vector2Int(7,6));
@@ -117,22 +114,22 @@ public class Level: MonoBehaviour {
 				fires.FillTiles(new Vector2Int(7, 9), new Vector2Int(10,10));
 				break;
 			case 5:
-				ground.GetComponent<Ground>().FillTiles(new Vector2Int(2,2), new Vector2Int(34,19));
-				walls.GetComponent<Wall>().FillWalls();
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(5,5), new Vector2Int(13,5));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(5,6), new Vector2Int(5,14));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(6,14), new Vector2Int(10,14));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(10,14), new Vector2Int(10,8));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(14,5), new Vector2Int(14,16));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(15,16), new Vector2Int(29,16));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(29,16), new Vector2Int(29,2));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(18,2), new Vector2Int(18,12));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(19,12), new Vector2Int(25,12));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(25,12), new Vector2Int(25,4));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(25,4), new Vector2Int(21,4));
-				walls.GetComponent<Wall>().FillTiles(new Vector2Int(21,5), new Vector2Int(21,9));
-				s.SetPos(new Vector2Int(2,2));
-				e.SetPos(new Vector2Int(32,2));
+				ground.FillTiles(new Vector2Int(2,2), new Vector2Int(34,19));
+				wall.FillWalls();
+				wall.FillTiles(new Vector2Int(5,5), new Vector2Int(13,5));
+				wall.FillTiles(new Vector2Int(5,6), new Vector2Int(5,14));
+				wall.FillTiles(new Vector2Int(6,14), new Vector2Int(10,14));
+				wall.FillTiles(new Vector2Int(10,14), new Vector2Int(10,8));
+				wall.FillTiles(new Vector2Int(14,5), new Vector2Int(14,16));
+				wall.FillTiles(new Vector2Int(15,16), new Vector2Int(29,16));
+				wall.FillTiles(new Vector2Int(29,16), new Vector2Int(29,2));
+				wall.FillTiles(new Vector2Int(18,2), new Vector2Int(18,12));
+				wall.FillTiles(new Vector2Int(19,12), new Vector2Int(25,12));
+				wall.FillTiles(new Vector2Int(25,12), new Vector2Int(25,4));
+				wall.FillTiles(new Vector2Int(25,4), new Vector2Int(21,4));
+				wall.FillTiles(new Vector2Int(21,5), new Vector2Int(21,9));
+				spawn.SetPos(new Vector2Int(2,2));
+				exit.SetPos(new Vector2Int(32,2));
 				fires.FillTiles(new Vector2Int(8,2), new Vector2Int(11,4));
 				fires.FillTiles(new Vector2Int(11,12), new Vector2Int(13,14));
 				fires.FillTiles(new Vector2Int(18,13), new Vector2Int(21,15));
@@ -146,8 +143,6 @@ public class Level: MonoBehaviour {
 			default:
 				break;
 		}
-		exit.SetActive(true);
-		spawn.SetActive(true);
-		s.SpawnPlayer(player);
+		spawn.SpawnPlayer(player);
 	}
 }

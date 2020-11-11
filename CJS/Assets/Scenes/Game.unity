@@ -968,7 +968,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -984,8 +984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1c91c18bddb41a6a70797367d4ac75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildLevel: {fileID: 735911187}
-  player: {fileID: 0}
+  world: {fileID: 735911187}
   button1: {fileID: 208878031}
   button2: {fileID: 2063597411}
   button3: {fileID: 1138467798}
@@ -1165,7 +1164,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1563,7 +1562,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 735911185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eece8e1b208ea4d6aae615b40ff3395f, type: 3}
+  m_Script: {fileID: 11500000, guid: f2b38363d8fb141bebe7417c96c6d1e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toShop:
@@ -1571,35 +1570,17 @@ MonoBehaviour:
       m_Calls: []
   nextLevel:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 735911185}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 982661628}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   die:
     m_PersistentCalls:
       m_Calls: []
-  player: {fileID: 0}
   shopParentMenu: {fileID: 982661628}
   shopChildMenu: {fileID: 354047916}
+  stats: {fileID: 1710646907}
+  coins: 0
+  lives: 3
+  speed: 3
+  range: 3
 --- !u!1 &753222429
 GameObject:
   m_ObjectHideFlags: 0

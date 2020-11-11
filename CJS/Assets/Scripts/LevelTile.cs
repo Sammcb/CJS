@@ -12,7 +12,7 @@ public class LevelTile: MonoBehaviour {
 	protected void Awake() {
 		tm = gameObject.AddComponent(typeof(Tilemap)) as Tilemap;
 		tmr = gameObject.AddComponent(typeof(TilemapRenderer)) as TilemapRenderer;
-		tm.size = new Vector3Int(50, 50, 0); //max size of level
+		tm.size = new Vector3Int(50, 50, 0);
 	}
 
 	protected int IntZ() {

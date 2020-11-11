@@ -7,17 +7,13 @@ public class Player: AnimatedTileEntity {
 	public int coins = 0;
 	public int levelCoins = 0;
 	public int lives = 3;
-	public Level level;
 	private Rigidbody2D rb;
 	public float range = 3;
 	public float speed = 3;
-	public StatsDisplay coinsText;
-	public StatsDisplay livesText;
 	public UnityEvent die;
 	private float maxShootDelay = 0.5f;
 	private float shootDelay;
 	private float colRadius = 0.3f;
-	private bool started = false;
 
 	new protected void Start() {
 		base.Start();
@@ -31,7 +27,6 @@ public class Player: AnimatedTileEntity {
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("Player");
 		shootDelay = maxShootDelay;
-		started = true;
 	}
 
 	new protected IEnumerator Animate() {
@@ -75,30 +70,7 @@ public class Player: AnimatedTileEntity {
 		}
 	}
 
-	public void PickupCoin() {
-		coinsText = GameObject.Find("Coins").GetComponent<StatsDisplay>();
-		levelCoins++;
-		coinsText.UpdateText(coins + levelCoins);
-	}
-
-	public void LoseLife() {
-		livesText = GameObject.Find("Lives").GetComponent<StatsDisplay>();
-		lives--;
-		livesText.UpdateText(lives);
-	}
-
-	public void UpdateText() {
-		coinsText = GameObject.Find("Coins").GetComponent<StatsDisplay>();
-		livesText = GameObject.Find("Lives").GetComponent<StatsDisplay>();
-		coinsText.UpdateText(coins);
-		livesText.UpdateText(lives);
-	}
-
 	private void OnCollisionEnter2D(Collision2D col) {
 		if (col.gameObject.tag == "Fire") die.Invoke();
-	}
-
-	private void OnEnable() {
-		if (started) StartCoroutine(Animate());
 	}
 }

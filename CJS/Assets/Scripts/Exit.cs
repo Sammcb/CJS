@@ -4,17 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Exit: TileEntity {
-	public UnityEvent toShop;
+	public UnityEvent exit;
 
 	new protected void Start() {
 		base.Start();
 		sr.sprite = Resources.Load<Sprite>("Sprites/door");
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		c.isTrigger = true;
-		toShop = transform.parent.GetComponent<Level>().toShop;
 	}
 
 	private void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.tag == "Player") toShop.Invoke();
+		if (col.gameObject.tag == "Player") exit.Invoke();
 	}
 }

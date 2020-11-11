@@ -7,6 +7,7 @@ public class TileEntity: MonoBehaviour {
 	protected Collider2D c;
 	public int z;
 	public Vector2Int position;
+	public static Level level;
 
 	protected void Start() {
 		sr = gameObject.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
