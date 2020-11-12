@@ -40,6 +40,8 @@ public class Level: MonoBehaviour {
 
 		embers = new TileEntityManager<Ember>();
 		embers.level = this;
+		embers.tileName = "Ember";
+		embers.z = baseZ - 2;
 		
 		coins = new TileEntityManager<Coin>();
 		coins.level = this;

@@ -7,7 +7,8 @@ public class Snowball: AnimatedTileEntity {
 	private Rigidbody2D rb;
 	private float size = 0.5f;
 	private float speed = 3;
-	private float splash = 0.75f; //how big circle 
+	private float splash = 0.75f;
+	private float fireZ = 1;
 
 	new private void Start() {
 		base.Start();
@@ -31,7 +32,7 @@ public class Snowball: AnimatedTileEntity {
 		if (col.gameObject.tag == "Fire") {
 			List<Collider2D> cols = new List<Collider2D>();
 			ContactFilter2D filter = new ContactFilter2D();
-			filter.SetDepth(1, 1);
+			filter.SetDepth(fireZ, fireZ);
 			Physics2D.OverlapCircle(transform.position, splash, filter, cols);
 			foreach (Collider2D c in cols) Destroy(c.gameObject);
 		}
