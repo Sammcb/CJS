@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TileEntityManager<T> where T: TileEntity {
-	public GameObject l;
+	public Level level;
 	public string tileName;
 	public int z;
 	public List<Vector2Int> tiles = new List<Vector2Int>();
@@ -13,7 +13,7 @@ public class TileEntityManager<T> where T: TileEntity {
 	public void SetTile(Vector2Int pos) {
 		GameObject o = new GameObject(tileName, typeof(T));
 		T te = o.GetComponent<T>();
-		te.transform.SetParent(l.transform);
+		te.transform.SetParent(level.transform);
 		te.transform.localPosition = Vector3.forward * z;
 		te.z = z;
 		if (te.GetType() == typeof(Poi)) {

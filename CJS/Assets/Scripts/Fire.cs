@@ -24,10 +24,10 @@ public class Fire: AnimatedTileEntity {
 				tick = 0;
 				for (float x = transform.position.x - 1; x <= transform.position.x + 1; x++) for (float y = transform.position.y - 1; y <= transform.position.y + 1; y++) {
 					Vector3Int cell = level.g.WorldToCell(new Vector3(x, y, z));
-					if (level.wall.TileType<WallTile>(cell.x, cell.y) || level.fires.tiles.Contains((Vector2Int) cell) || level.exit.position == (Vector2Int) cell || UnityEngine.Random.Range(0, 10) < 5) continue;
+					if (level.wall.TileType<WallTile>(cell.x, cell.y) || level.fires.tiles.Contains((Vector2Int) cell) || level.embers.tiles.Contains((Vector2Int) cell) || level.exit.position == (Vector2Int) cell || UnityEngine.Random.Range(0, 10) < 5) continue;
 					if (level.coins.tiles.Contains((Vector2Int) cell)) level.coins.Tile((Vector2Int) cell).Burn();
 					if (level.pois.tiles.Contains((Vector2Int) cell)) level.pois.Tile((Vector2Int) cell).Burn();
-					level.fires.SetTile((Vector2Int) cell);
+					level.embers.SetTile((Vector2Int) cell);
 				}
 			}
 			yield return new WaitForSeconds(1);

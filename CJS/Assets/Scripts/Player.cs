@@ -42,7 +42,7 @@ public class Player: AnimatedTileEntity {
 	}
 
 	private void Update() {
-		Vector3 pos = Vector3.Normalize(Vector3.up * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal")) * Time.deltaTime * speed;
+		Vector3 pos = Vector3.Normalize(Vector3.up * Input.GetAxisRaw("Vertical") + Vector3.right * Input.GetAxisRaw("Horizontal")) * Time.deltaTime * speed;
 		List<Collider2D> cols = new List<Collider2D>();
 		ContactFilter2D filter = new ContactFilter2D();
 		filter.SetDepth(2, 2);

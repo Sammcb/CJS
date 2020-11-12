@@ -11,6 +11,7 @@ public class Level: MonoBehaviour {
 	public Spawn spawn;
 	public Exit exit;
 	public TileEntityManager<Fire> fires;
+	public TileEntityManager<Ember> embers;
 	public TileEntityManager<Coin> coins;
 	public TileEntityManager<Poi> pois;
 	public Player player;
@@ -33,17 +34,20 @@ public class Level: MonoBehaviour {
 		wall.transform.localPosition = Vector3.forward * (baseZ - 1);
 
 		fires = new TileEntityManager<Fire>();
-		fires.l = gameObject;
+		fires.level = this;
 		fires.tileName = "Fire";
 		fires.z = baseZ - 2;
+
+		embers = new TileEntityManager<Ember>();
+		embers.level = this;
 		
 		coins = new TileEntityManager<Coin>();
-		coins.l = gameObject;
+		coins.level = this;
 		coins.tileName = "Coin";
 		coins.z = baseZ - 1;
 		
 		pois = new TileEntityManager<Poi>();
-		pois.l = gameObject;
+		pois.level = this;
 		pois.tileName = "Poi";
 		pois.z = baseZ - 1;
 		pois.size = new Vector2Int(2, 1);
