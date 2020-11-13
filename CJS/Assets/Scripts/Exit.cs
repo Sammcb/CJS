@@ -8,7 +8,7 @@ public class Exit: TileEntity {
 
 	new protected void Start() {
 		base.Start();
-		sr.sprite = Resources.Load<Sprite>("Sprites/door");
+		sr.sprite = Resources.LoadAll<Sprite>("Sprites/hole")[2];
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		c.isTrigger = true;
 	}

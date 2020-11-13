@@ -9,7 +9,7 @@ public class Ground: LevelTile {
 	new private void Awake() {
 		base.Awake();
 		GroundTile t = ScriptableObject.CreateInstance<GroundTile>();
-		t.sprite = Resources.Load<Sprite>("Tiles/ground");
+		t.sprite = Resources.LoadAll<Sprite>("Tiles/environment")[1];
 		tile = t;
 	}
 }

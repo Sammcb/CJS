@@ -7,6 +7,7 @@ TagManager:
   - Fire
   - Snowball
   - Wall
+  - Ember
   layers:
   - Default
   - TransparentFX
