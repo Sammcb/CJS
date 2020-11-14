@@ -137,10 +137,10 @@ public class Level: MonoBehaviour {
 				spawn.SetPos(new Vector2Int(2,2));
 				exit.SetPos(new Vector2Int(32,2));
 				fires.FillTiles(new Vector2Int(8,2), new Vector2Int(11,4));
-				fires.FillTiles(new Vector2Int(11,12), new Vector2Int(13,14));
+				fires.FillTiles(new Vector2Int(12,12), new Vector2Int(12,12));
 				fires.FillTiles(new Vector2Int(18,13), new Vector2Int(21,15));
-				fires.FillTiles(new Vector2Int(26,2), new Vector2Int(28,7));
-				fires.FillTiles(new Vector2Int(30, 11), new Vector2Int(34,14));
+				fires.FillTiles(new Vector2Int(28,6), new Vector2Int(28,6));
+				fires.FillTiles(new Vector2Int(33, 13), new Vector2Int(33,13));
 				coins.FillTiles(new Vector2Int(22,5), new Vector2Int(24,7));
 				coins.SetTile(new Vector2Int(6, 13));
 				coins.SetTile(new Vector2Int(9, 13));
