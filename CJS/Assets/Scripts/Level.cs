@@ -146,6 +146,64 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(9, 13));
 				pois.FillTiles(new Vector2Int(7, 11), new Vector2Int(8,12));
 				break;
+			case 6:
+				ground.FillTiles(new Vector2Int(1,1), new Vector2Int(40,40));
+				wall.FillWalls();
+				spawn.SetPos(new Vector2Int(20,20));
+				exit.SetPos(new Vector2Int(1,40));
+				fires.FillTiles(new Vector2Int(15, 15), new Vector2Int(15, 25));
+				fires.FillTiles(new Vector2Int(16, 25), new Vector2Int(25, 25));
+				fires.FillTiles(new Vector2Int(16, 15), new Vector2Int(25, 15));
+				fires.FillTiles(new Vector2Int(25, 16), new Vector2Int(25, 24));
+				fires.FillTiles(new Vector2Int(10, 10), new Vector2Int(10, 30));
+				fires.FillTiles(new Vector2Int(11, 30), new Vector2Int(30, 30));
+				fires.FillTiles(new Vector2Int(11, 10), new Vector2Int(30, 10));
+				fires.FillTiles(new Vector2Int(30, 11), new Vector2Int(30, 29));
+				coins.SetTile(new Vector2Int(40, 1));
+				coins.SetTile(new Vector2Int(1, 1));
+				coins.SetTile(new Vector2Int(40, 40));
+				break;
+			case 7:
+				ground.FillTiles(new Vector2Int(2,2), new Vector2Int(18,32));
+				ground.FillTiles(new Vector2Int(19,2), new Vector2Int(36, 4));
+				wall.FillWalls();
+				wall.FillTiles(new Vector2Int(5,2), new Vector2Int(5,9));
+				wall.FillTiles(new Vector2Int(5,13), new Vector2Int(14,13));
+				wall.FillTiles(new Vector2Int(14,2), new Vector2Int(14,12));
+				wall.FillTiles(new Vector2Int(6,9), new Vector2Int(11,9));
+				wall.FillTiles(new Vector2Int(11,4), new Vector2Int(11,8));
+				wall.FillTiles(new Vector2Int(8,4), new Vector2Int(10,4));
+				wall.FillTiles(new Vector2Int(8,5), new Vector2Int(8,6));
+				wall.FillTiles(new Vector2Int(2,17), new Vector2Int(16,17));
+				wall.FillTiles(new Vector2Int(16,18), new Vector2Int(16,30));
+				wall.FillTiles(new Vector2Int(4,30), new Vector2Int(15,30));
+				wall.FillTiles(new Vector2Int(4,20), new Vector2Int(4,29));
+				wall.FillTiles(new Vector2Int(5,20), new Vector2Int(13,20));
+				wall.FillTiles(new Vector2Int(13,21), new Vector2Int(13,27));
+				wall.FillTiles(new Vector2Int(7,27), new Vector2Int(12,27));
+				wall.FillTiles(new Vector2Int(7,23), new Vector2Int(7,26));
+				wall.FillTiles(new Vector2Int(8,23), new Vector2Int(9,23));
+				wall.FillTiles(new Vector2Int(10,23), new Vector2Int(10,24));
+				spawn.SetPos(new Vector2Int(2,2));
+				exit.SetPos(new Vector2Int(8, 24));
+				coins.SetTile(new Vector2Int(35,2));
+				coins.SetTile(new Vector2Int(35,4));
+				coins.SetTile(new Vector2Int(34,3));
+				coins.SetTile(new Vector2Int(36,3));
+				coins.SetTile(new Vector2Int(2,32));
+				coins.SetTile(new Vector2Int(15, 18));
+				pois.FillTiles(new Vector2Int(9,5), new Vector2Int(10,5));
+				fires.FillTiles(new Vector2Int(5,10), new Vector2Int(5,12));
+				fires.FillTiles(new Vector2Int(12,4), new Vector2Int(13,9));
+				fires.FillTiles(new Vector2Int(20, 2), new Vector2Int(20,4));
+				fires.SetTile(new Vector2Int(18, 17));
+				fires.SetTile(new Vector2Int(15, 29));
+				fires.SetTile(new Vector2Int(2, 18));
+
+
+
+				break;
+
 			default:
 				break;
 		}
