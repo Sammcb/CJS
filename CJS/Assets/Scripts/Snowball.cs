@@ -10,6 +10,9 @@ public class Snowball: AnimatedTileEntity {
 	private float splash = 0.75f;
 	private float fireZ = 1;
 
+	private AudioClip snowballSfx;
+	private AudioSource source;
+
 	new private void Start() {
 		base.Start();
 		sprites = Resources.LoadAll<Sprite>("Sprites/snowball");
@@ -21,6 +24,9 @@ public class Snowball: AnimatedTileEntity {
 		c = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
 		gameObject.layer = LayerMask.NameToLayer("Snowball");
 		gameObject.tag = "Snowball";
+
+		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
+		snowballSfx = Resources.Load<AudioClip>("SoundEffects/snowballSFX");
 	}
 
 	private void Update() {
@@ -30,6 +36,7 @@ public class Snowball: AnimatedTileEntity {
 
 	private void OnCollisionEnter2D(Collision2D col) {
 		if (col.gameObject.tag == "Fire") {
+			source.PlayOneShot(snowballSfx);
 			List<Collider2D> cols = new List<Collider2D>();
 			ContactFilter2D filter = new ContactFilter2D();
 			filter.SetDepth(fireZ, fireZ);
