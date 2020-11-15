@@ -23,6 +23,11 @@ public class World: MonoBehaviour {
 	public float speed = 3;
 	public float range = 3;
 
+	private AudioClip dieSfx;
+	private AudioClip levelStartSfx;
+
+	private AudioSource source;
+
 	private void Awake() {
 		toShop = new UnityEvent();
 		nextLevel = new UnityEvent();
@@ -40,6 +45,13 @@ public class World: MonoBehaviour {
 		cam.orthographicSize = 8;
 		cam.depth = -1;
 		cam.backgroundColor = Color.black;
+
+
+		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
+		dieSfx = Resources.Load<AudioClip>("SoundEffects/dieSFX");
+		levelStartSfx = Resources.Load<AudioClip>("SoundEffects/levelStartSfx");
+
+
 
 		InitLevel();
 	}
@@ -68,12 +80,16 @@ public class World: MonoBehaviour {
 	}
 
 	private void NextLevel() {
+		source.PlayOneShot(levelStartSfx);
+
 		levelNum++;
 		shopParentMenu.SetActive(false);
 		InitLevel();
 	}
 
 	private void Die() {
+		source.PlayOneShot(dieSfx);
+
 		lives--;
 		Destroy(level.gameObject);
 		if (lives < 0) {

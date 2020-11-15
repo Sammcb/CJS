@@ -6,6 +6,9 @@ using UnityEngine.Tilemaps;
 public class Fire: AnimatedTileEntity {
 	private static int spreadRate = 10;
 	private int tick;
+	private AudioClip burnSfx;
+	private AudioSource source;
+
 
 	new private void Start() {
 		base.Start();
@@ -16,17 +19,28 @@ public class Fire: AnimatedTileEntity {
 		StartCoroutine(Animate());
 		StartCoroutine(SpreadFire());
 		gameObject.tag = "Fire";
+		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
+		burnSfx = Resources.Load<AudioClip>("SoundEffects/burnSFX");
 	}
 
 	IEnumerator SpreadFire() {
+		bool burnSound = false;
+
 		while (true) {
 			if (++tick >= spreadRate) {
 				tick = 0;
 				for (float x = transform.position.x - 1; x <= transform.position.x + 1; x++) for (float y = transform.position.y - 1; y <= transform.position.y + 1; y++) {
 					Vector3Int cell = level.g.WorldToCell(new Vector3(x, y, z));
 					if (level.wall.TileType<WallTile>(cell.x, cell.y) || level.fires.tiles.Contains((Vector2Int) cell) || level.embers.tiles.Contains((Vector2Int) cell) || level.exit.position == (Vector2Int) cell || UnityEngine.Random.Range(0, 10) < 5) continue;
-					if (level.coins.tiles.Contains((Vector2Int) cell)) level.coins.Tile((Vector2Int) cell).Burn();
-					if (level.pois.tiles.Contains((Vector2Int) cell)) level.pois.Tile((Vector2Int) cell).Burn();
+					if (level.coins.tiles.Contains((Vector2Int) cell)) {
+						burnSound = true;
+						level.coins.Tile((Vector2Int) cell).Burn();
+					}
+					if (level.pois.tiles.Contains((Vector2Int) cell)) {
+						burnSound = true;
+						level.pois.Tile((Vector2Int) cell).Burn();
+					}
+					if(burnSound) source.PlayOneShot(burnSfx);
 					level.embers.SetTile((Vector2Int) cell);
 				}
 			}

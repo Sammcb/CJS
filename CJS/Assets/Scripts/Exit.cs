@@ -5,15 +5,24 @@ using UnityEngine.Events;
 
 public class Exit: TileEntity {
 	public UnityEvent exit;
+	private AudioClip levelFinishSfx;
+	private AudioSource source;
 
 	new protected void Start() {
 		base.Start();
 		sr.sprite = Resources.LoadAll<Sprite>("Sprites/hole")[2];
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		c.isTrigger = true;
+
+		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
+		levelFinishSfx = Resources.Load<AudioClip>("SoundEffects/levelFinishSfx");
 	}
 
 	private void OnTriggerEnter2D(Collider2D col) {
-		if (col.gameObject.tag == "Player") exit.Invoke();
+		if (col.gameObject.tag == "Player") {
+			source.PlayOneShot(levelFinishSfx);
+
+			exit.Invoke();
+		}
 	}
 }
