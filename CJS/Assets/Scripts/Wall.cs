@@ -9,7 +9,7 @@ public class Wall: RigidLevelTile {
 	new private void Awake() {
 		base.Awake();
 		WallTile t = ScriptableObject.CreateInstance<WallTile>();
-		t.sprite = Resources.LoadAll<Sprite>("Tiles/environment")[2];
+		t.sprite = Resources.Load<Sprite>("Tiles/wall");
 		tile = t;
 		gameObject.tag = "Wall";
 		gameObject.layer = LayerMask.NameToLayer("Wall");

@@ -8,7 +8,6 @@ public class Fire: AnimatedTileEntity {
 	private int tick;
 	private AudioClip burnSfx;
 	private AudioSource source;
-	private FireParticle emitter;
 
 	new private void Start() {
 		base.Start();
@@ -22,7 +21,7 @@ public class Fire: AnimatedTileEntity {
 		gameObject.tag = "Fire";
 		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
 		burnSfx = Resources.Load<AudioClip>("SoundEffects/burnSFX");
-		emitter = new GameObject("Emitter", typeof(FireParticle)).GetComponent<FireParticle>();
+		FireParticle emitter = new GameObject("Emitter", typeof(FireParticle)).GetComponent<FireParticle>();
 		emitter.transform.SetParent(transform);
 		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z - 1));
 	}
@@ -35,7 +34,7 @@ public class Fire: AnimatedTileEntity {
 				tick = 0;
 				for (float x = transform.position.x - 1; x <= transform.position.x + 1; x++) for (float y = transform.position.y - 1; y <= transform.position.y + 1; y++) {
 					Vector3Int cell = level.g.WorldToCell(new Vector3(x, y, z));
-					if (level.wall.TileType<WallTile>(cell.x, cell.y) || level.fires.tiles.Contains((Vector2Int) cell) || level.embers.tiles.Contains((Vector2Int) cell) || level.exit.position == (Vector2Int) cell || UnityEngine.Random.Range(0, 10) < 5) continue;
+					if (level.wall.TileType<WallTile>(cell.x, cell.y) || level.fires.tiles.Contains((Vector2Int) cell) || level.embers.tiles.Contains((Vector2Int) cell) || level.exit.position == (Vector2Int) cell || level.princess.position == (Vector2Int) cell || UnityEngine.Random.Range(0, 10) < 5) continue;
 					if (level.coins.tiles.Contains((Vector2Int) cell)) {
 						burnSound = true;
 						level.coins.Tile((Vector2Int) cell).Burn();

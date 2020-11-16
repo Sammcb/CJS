@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireParticle: MonoBehaviour {
+public class BurnParticle: MonoBehaviour {
 	private ParticleSystem ps;
 
 	private void Start() {
 		ps = gameObject.AddComponent(typeof(ParticleSystem)) as ParticleSystem;
 		var main = ps.main;
+		main.loop = false;
+		ps.Stop();
+		main.duration = 0.4f;
+		ps.Play();
 		main.startLifetime = 0.3f;
-		main.simulationSpeed = 0.3f;
-		main.startSize = 0.1f;
+		main.startSize = 0.7f;
 		var renderer = ps.GetComponent<Renderer>();
 		renderer.material = Resources.Load<Material>("Particles/particle");
 		var tsa = ps.textureSheetAnimation;
 		tsa.enabled = true;
 		tsa.mode = ParticleSystemAnimationMode.Sprites;
-		tsa.SetSprite(0, Resources.Load<Sprite>("Particles/whisp"));
+		tsa.SetSprite(0, Resources.Load<Sprite>("Particles/smoke"));
 		var shape = ps.shape;
 		float arc = 40;
 		shape.arc = arc;
@@ -25,5 +28,9 @@ public class FireParticle: MonoBehaviour {
 
 	public void SetPos(Vector3 pos) {
 		transform.position = pos;
+	}
+
+	public void Update() {
+		if (ps.isStopped) Destroy(gameObject);
 	}
 }

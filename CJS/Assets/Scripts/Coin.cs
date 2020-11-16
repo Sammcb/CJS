@@ -37,5 +37,8 @@ public class Coin: AnimatedTileEntity {
 	public void Burn() {
 		gameObject.SetActive(false);
 		burnt = true;
+		BurnParticle emitter = new GameObject("Emitter", typeof(BurnParticle)).GetComponent<BurnParticle>();
+		emitter.transform.SetParent(level.transform);
+		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z - 1));
 	}
 }

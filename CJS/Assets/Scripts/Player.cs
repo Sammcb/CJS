@@ -11,7 +11,7 @@ public class Player: AnimatedTileEntity {
 	public float range = 3;
 	public float speed = 3;
 	public UnityEvent die;
-	private ParticleSystem ps;
+	private PlayerParticle emitter;
 	private float maxShootDelay = 0.5f;
 	private float shootDelay;
 	private float colRadius = 0.3f;
@@ -29,6 +29,10 @@ public class Player: AnimatedTileEntity {
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("Player");
 		shootDelay = maxShootDelay;
+		emitter = new GameObject("Emitter", typeof(PlayerParticle)).GetComponent<PlayerParticle>();
+		emitter.transform.SetParent(transform);
+		emitter.transform.rotation = transform.rotation * Quaternion.AngleAxis(180, Vector3.forward);
+		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z + 1));
 	}
 
 	new protected IEnumerator Animate() {
@@ -46,6 +50,13 @@ public class Player: AnimatedTileEntity {
 	private void Update() {
 		if (Input.GetButtonDown("Cancel")) paused = !paused;
 		if (paused) return;
+
+		if (emitter.ps && emitter.ps.isStopped && (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)) {
+			emitter.ps.Play();
+		} else if (emitter.ps && emitter.ps.isPlaying && Input.GetAxisRaw("Vertical") == 0 && Input.GetAxisRaw("Horizontal") == 0) {
+			emitter.ps.Stop();
+		}
+
 		Vector3 pos = Vector3.Normalize(Vector3.up * Input.GetAxisRaw("Vertical") + Vector3.right * Input.GetAxisRaw("Horizontal")) * Time.deltaTime * speed;
 		List<Collider2D> cols = new List<Collider2D>();
 		ContactFilter2D filter = new ContactFilter2D();

@@ -12,16 +12,14 @@ public class Poi: TileEntity {
 		amount = 1;
 	}
 
-	new public void SetPos(Vector2Int pos) {
-		transform.localPosition = new Vector3(pos.x + 1, pos.y + 0.5f, z);
-		position = pos;
-	}
-
 	public bool Saved() {
 		return gameObject.activeSelf;
 	}
 
 	public void Burn() {
 		gameObject.SetActive(false);
+		BurnParticle emitter = new GameObject("Emitter", typeof(BurnParticle)).GetComponent<BurnParticle>();
+		emitter.transform.SetParent(level.transform);
+		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z - 1));
 	}
 }

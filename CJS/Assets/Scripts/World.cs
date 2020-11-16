@@ -58,6 +58,7 @@ public class World: MonoBehaviour {
 		level = new GameObject("Level", typeof(Level)).GetComponent<Level>();
 		level.transform.SetParent(transform);
 		level.baseZ = baseZ;
+		level.maxLevel = maxLevel;
 		level.toShop = toShop;
 		level.pause = pause;
 		level.world = this;

@@ -10,7 +10,7 @@ public class Exit: TileEntity {
 
 	new protected void Start() {
 		base.Start();
-		sr.sprite = Resources.LoadAll<Sprite>("Sprites/hole")[2];
+		sr.sprite = Resources.Load<Sprite>("Sprites/exit");
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		c.isTrigger = true;
 
@@ -21,7 +21,6 @@ public class Exit: TileEntity {
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "Player") {
 			source.PlayOneShot(levelFinishSfx);
-
 			exit.Invoke();
 		}
 	}

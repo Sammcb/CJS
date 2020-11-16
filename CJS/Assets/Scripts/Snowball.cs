@@ -24,6 +24,9 @@ public class Snowball: AnimatedTileEntity {
 		c = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
 		gameObject.layer = LayerMask.NameToLayer("Snowball");
 		gameObject.tag = "Snowball";
+		SnowballParticle emitter = new GameObject("Emitter", typeof(SnowballParticle)).GetComponent<SnowballParticle>();
+		emitter.transform.SetParent(transform);
+		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z - 1));
 
 		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
 		snowballSfx = Resources.Load<AudioClip>("SoundEffects/snowballSFX");
@@ -41,7 +44,12 @@ public class Snowball: AnimatedTileEntity {
 			ContactFilter2D filter = new ContactFilter2D();
 			filter.SetDepth(fireZ, fireZ);
 			Physics2D.OverlapCircle(transform.position, splash, filter, cols);
-			foreach (Collider2D c in cols) Destroy(c.gameObject);
+			foreach (Collider2D c in cols) {
+				DouseParticle emitter = new GameObject("Emitter", typeof(DouseParticle)).GetComponent<DouseParticle>();
+				emitter.transform.SetParent(level.transform);
+				emitter.SetPos(new Vector3(c.transform.position.x, c.transform.position.y, z - 1));
+				Destroy(c.gameObject);
+			}
 		}
 		Destroy(gameObject);
 	}

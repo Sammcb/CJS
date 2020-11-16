@@ -10,6 +10,7 @@ public class Level: MonoBehaviour {
 	public Wall wall;
 	public Spawn spawn;
 	public Exit exit;
+	public Princess princess;
 	public TileEntityManager<Fire> fires;
 	public TileEntityManager<Ember> embers;
 	public TileEntityManager<Coin> coins;
@@ -19,9 +20,10 @@ public class Level: MonoBehaviour {
 	public Grid g;
 	public int collectedCoins = 0;
 	public GameObject pause;
+	public int maxLevel;
 	private bool paused = false;
 
-	private void BuildObjects() {
+	private void BuildObjects(int level) {
 		TileEntity.level = this;
 
 		g = gameObject.AddComponent(typeof(Grid)) as Grid;
@@ -54,12 +56,19 @@ public class Level: MonoBehaviour {
 		pois.level = this;
 		pois.tileName = "Poi";
 		pois.z = baseZ - 1;
-		pois.size = new Vector2Int(2, 1);
 		
+		princess = new GameObject("Princess", typeof(Princess)).GetComponent<Princess>();
+		princess.transform.SetParent(transform);
+		princess.z = baseZ - 1;
+		princess.exit = toShop;
+
 		exit = new GameObject("Exit", typeof(Exit)).GetComponent<Exit>();
 		exit.transform.SetParent(transform);
 		exit.z = baseZ - 1;
 		exit.exit = toShop;
+
+		exit.gameObject.SetActive(level == maxLevel);
+		princess.gameObject.SetActive(level == maxLevel);
 
 		spawn = new GameObject("Spawn", typeof(Spawn)).GetComponent<Spawn>();
 		spawn.transform.SetParent(transform);
@@ -69,7 +78,7 @@ public class Level: MonoBehaviour {
 	}
 
 	public void Init(int level) {
-		BuildObjects();
+		BuildObjects(level);
 		switch (level) {
 			case 0:
 				ground.FillTiles(new Vector2Int(1, 1), new Vector2Int(3, 15));
@@ -274,7 +283,6 @@ public class Level: MonoBehaviour {
 				fires.FillTiles(new Vector2Int(2,5), new Vector2Int(20,25));
 				fires.FillTiles(new Vector2Int(5,2), new Vector2Int(24,4));
 				fires.FillTiles(new Vector2Int(21,5), new Vector2Int(24,20));
-
 				break;
 			case 11:
 				ground.FillTiles(new Vector2Int(33,8), new Vector2Int(49,49));
@@ -292,7 +300,7 @@ public class Level: MonoBehaviour {
 				wall.FillTiles(new Vector2Int(44,41), new Vector2Int(44,45));
 				wall.FillTiles(new Vector2Int(47,39), new Vector2Int(47, 46));
 				spawn.SetPos(new Vector2Int(49,49));
-				exit.SetPos(new Vector2Int(33,8));
+				princess.SetPos(new Vector2Int(33,8));
 				pois.SetTile(new Vector2Int(36,39));
 				pois.SetTile(new Vector2Int(42,45));
 				pois.SetTile(new Vector2Int(49,27));
