@@ -259,6 +259,20 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(25, 6));
 				break;
 			case 10:
+				ground.FillTiles(new Vector2Int(2,2), new Vector2Int(24,25));
+				ground.FillTiles(new Vector2Int(25,24), new Vector2Int(42, 25));
+				wall.FillWalls();
+				spawn.SetPos(new Vector2Int(2,2));
+				exit.SetPos(new Vector2Int(42, 24));
+				pois.SetTile(new Vector2Int(30,24));
+				coins.SetTile(new Vector2Int(38, 24));
+				coins.SetTile(new Vector2Int(40,24));
+				coins.SetTile(new Vector2Int(34, 24));
+				coins.SetTile(new Vector2Int(36, 24));
+				fires.FillTiles(new Vector2Int(2,5), new Vector2Int(20,25));
+				fires.FillTiles(new Vector2Int(5,2), new Vector2Int(24,4));
+				fires.FillTiles(new Vector2Int(21,5), new Vector2Int(24,20));
+				
 				break;
 			case 11:
 				break;
