@@ -18,6 +18,7 @@ public class World: MonoBehaviour {
 	public GameObject shopChildMenu;
 	public GameObject stats;
 	public GameObject pause;
+	public PlayerCamera bgCam;
 
 	public int coins = 0;
 	public int lives = 3;
@@ -45,7 +46,8 @@ public class World: MonoBehaviour {
 		cam.orthographic = true;
 		cam.orthographicSize = 8;
 		cam.depth = -1;
-		cam.backgroundColor = Color.black;
+		cam.clearFlags = CameraClearFlags.Nothing;
+		cam.cullingMask = 0b_0000_0000_0000_0000_0000_0111_1111_1111;
 
 		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
 		dieSfx = Resources.Load<AudioClip>("SoundEffects/dieSFX");
@@ -123,6 +125,7 @@ public class World: MonoBehaviour {
 		p.speed = speed;
 		p.range = range;
 		cam.GetComponent<PlayerCamera>().target = p;
+		bgCam.target = p;
 		return p;
 	}
 
