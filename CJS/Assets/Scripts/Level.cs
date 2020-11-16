@@ -272,9 +272,39 @@ public class Level: MonoBehaviour {
 				fires.FillTiles(new Vector2Int(2,5), new Vector2Int(20,25));
 				fires.FillTiles(new Vector2Int(5,2), new Vector2Int(24,4));
 				fires.FillTiles(new Vector2Int(21,5), new Vector2Int(24,20));
-				
+
 				break;
 			case 11:
+				ground.FillTiles(new Vector2Int(33,8), new Vector2Int(49,49));
+				wall.FillWalls();
+				wall.FillTiles(new Vector2Int(33,22), new Vector2Int(42,22));
+				wall.FillTiles(new Vector2Int(36,26), new Vector2Int(49,26));
+				wall.FillTiles(new Vector2Int(36,27), new Vector2Int(36,35));
+				wall.FillTiles(new Vector2Int(39,35), new Vector2Int(49,35));
+				wall.FillTiles(new Vector2Int(35,38), new Vector2Int(35,47));
+				wall.FillTiles(new Vector2Int(36,38), new Vector2Int(38,38));
+				wall.FillTiles(new Vector2Int(38,39), new Vector2Int(38,49));
+				wall.FillTiles(new Vector2Int(41,38), new Vector2Int(47, 38));
+				wall.FillTiles(new Vector2Int(41, 39), new Vector2Int(41,46));
+				wall.FillTiles(new Vector2Int(42,46), new Vector2Int(44,46));
+				wall.FillTiles(new Vector2Int(44,41), new Vector2Int(44,45));
+				wall.FillTiles(new Vector2Int(47,39), new Vector2Int(47, 46));
+				spawn.SetPos(new Vector2Int(49,49));
+				exit.SetPos(new Vector2Int(33,8));
+				pois.SetTile(new Vector2Int(36,39));
+				pois.SetTile(new Vector2Int(42,45));
+				pois.SetTile(new Vector2Int(49,27));
+				pois.SetTile(new Vector2Int(36,10));
+				pois.SetTile(new Vector2Int(41,10));
+				pois.SetTile(new Vector2Int(46,10));
+				pois.SetTile(new Vector2Int(36,18));
+				pois.SetTile(new Vector2Int(41,18));
+				pois.SetTile(new Vector2Int(46,18));
+				fires.FillTiles(new Vector2Int(46,24), new Vector2Int(47,24));
+				fires.FillTiles(new Vector2Int(39,27), new Vector2Int(39,34));
+				fires.FillTiles(new Vector2Int(36, 46), new Vector2Int(37,47));
+				fires.FillTiles(new Vector2Int(45,41), new Vector2Int(46,42));
+				fires.SetTile(new Vector2Int(41, 14));
 				break;
 			default:
 				break;
