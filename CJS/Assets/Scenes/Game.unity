@@ -4179,10 +4179,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Move with WASD or arrow keys. Click to throw snowballs and extinguish
-    fires. Collect coins and save as many houses as you can - each house left standing
-    will earn you 2 coins! Use coins to upgrade your abilities. \n\n\n\n\t\t\t   
-    Good luck... you'll need it."
+  m_text: "Move with WASD or arrow keys. Press esc to toggle pause. Click to throw
+    snowballs and extinguish fires. Collect coins and save as many houses as you
+    can - each house left standing will earn you 2 coins! Use coins to upgrade your
+    abilities. \n\n\n\n\t\t\t    Good luck... you'll need it."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
