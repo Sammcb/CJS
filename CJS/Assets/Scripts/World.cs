@@ -17,6 +17,7 @@ public class World: MonoBehaviour {
 	public GameObject shopParentMenu;
 	public GameObject shopChildMenu;
 	public GameObject stats;
+	public GameObject pause;
 
 	public int coins = 0;
 	public int lives = 3;
@@ -46,12 +47,9 @@ public class World: MonoBehaviour {
 		cam.depth = -1;
 		cam.backgroundColor = Color.black;
 
-
 		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
 		dieSfx = Resources.Load<AudioClip>("SoundEffects/dieSFX");
 		levelStartSfx = Resources.Load<AudioClip>("SoundEffects/levelStartSfx");
-
-
 
 		InitLevel();
 	}
@@ -61,6 +59,7 @@ public class World: MonoBehaviour {
 		level.transform.SetParent(transform);
 		level.baseZ = baseZ;
 		level.toShop = toShop;
+		level.pause = pause;
 		level.world = this;
 		UpdateStats();
 		level.Init(levelNum);

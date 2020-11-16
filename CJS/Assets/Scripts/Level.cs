@@ -18,6 +18,8 @@ public class Level: MonoBehaviour {
 	public UnityEvent toShop;
 	public Grid g;
 	public int collectedCoins = 0;
+	public GameObject pause;
+	private bool paused = false;
 
 	private void BuildObjects() {
 		TileEntity.level = this;
@@ -310,5 +312,19 @@ public class Level: MonoBehaviour {
 				break;
 		}
 		spawn.SpawnPlayer(player);
+	}
+
+	private void Update() {
+		if (Input.GetButtonDown("Cancel")) {
+			if (paused) {
+				pause.SetActive(false);
+				Time.timeScale = 1;
+				paused = false;
+			} else {
+				pause.SetActive(true);
+				Time.timeScale = 0;
+				paused = true;
+			}
+		}
 	}
 }

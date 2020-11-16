@@ -14,6 +14,7 @@ public class Player: AnimatedTileEntity {
 	private float maxShootDelay = 0.5f;
 	private float shootDelay;
 	private float colRadius = 0.3f;
+	private bool paused = false;
 
 	new protected void Start() {
 		base.Start();
@@ -42,6 +43,8 @@ public class Player: AnimatedTileEntity {
 	}
 
 	private void Update() {
+		if (Input.GetButtonDown("Cancel")) paused = !paused;
+		if (paused) return;
 		Vector3 pos = Vector3.Normalize(Vector3.up * Input.GetAxisRaw("Vertical") + Vector3.right * Input.GetAxisRaw("Horizontal")) * Time.deltaTime * speed;
 		List<Collider2D> cols = new List<Collider2D>();
 		ContactFilter2D filter = new ContactFilter2D();
@@ -59,7 +62,7 @@ public class Player: AnimatedTileEntity {
 
 		if (shootDelay < maxShootDelay) shootDelay += Time.deltaTime;
 
-		if(Input.GetMouseButtonDown(0) && shootDelay >= maxShootDelay) {
+		if(Input.GetButton("Fire1") && shootDelay >= maxShootDelay) {
 			GameObject snowball = new GameObject("Snowball", typeof(Snowball));
 			snowball.transform.SetParent(level.transform);
 			Snowball sb = snowball.GetComponent<Snowball>();
