@@ -11,6 +11,7 @@ public class Player: AnimatedTileEntity {
 	public float range = 3;
 	public float speed = 3;
 	public UnityEvent die;
+	private ParticleSystem ps;
 	private float maxShootDelay = 0.5f;
 	private float shootDelay;
 	private float colRadius = 0.3f;

@@ -8,7 +8,7 @@ public class Fire: AnimatedTileEntity {
 	private int tick;
 	private AudioClip burnSfx;
 	private AudioSource source;
-
+	private FireParticle emitter;
 
 	new private void Start() {
 		base.Start();
@@ -16,11 +16,15 @@ public class Fire: AnimatedTileEntity {
 		sr.sprite = sprites[0];
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		tick = UnityEngine.Random.Range(0, 6);
+		delay = UnityEngine.Random.Range(0.3f, 1.3f);
 		StartCoroutine(Animate());
 		StartCoroutine(SpreadFire());
 		gameObject.tag = "Fire";
 		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
 		burnSfx = Resources.Load<AudioClip>("SoundEffects/burnSFX");
+		emitter = new GameObject("Emitter", typeof(FireParticle)).GetComponent<FireParticle>();
+		emitter.transform.SetParent(transform);
+		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z - 1));
 	}
 
 	IEnumerator SpreadFire() {
