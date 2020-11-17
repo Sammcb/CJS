@@ -71,7 +71,6 @@ public class World: MonoBehaviour {
 	private void ToShop() {
 		foreach (Poi poi in level.pois.objects) if (poi.Saved()) coins += poi.amount;
 		UpdateStats();
-		coins += level.collectedCoins;
 		Destroy(level.gameObject);
 		if (levelNum == maxLevel) {
 			Win();
@@ -91,7 +90,7 @@ public class World: MonoBehaviour {
 
 	private void Die() {
 		source.PlayOneShot(dieSfx);
-
+		coins -= level.collectedCoins;
 		lives--;
 		Destroy(level.gameObject);
 		if (lives < 0) {
@@ -132,7 +131,7 @@ public class World: MonoBehaviour {
 	public void UpdateStats() {
 		StatsDisplay coinsText = GameObject.Find("Coins").GetComponent<StatsDisplay>();
 		StatsDisplay livesText = GameObject.Find("Lives").GetComponent<StatsDisplay>();
-		coinsText.UpdateText(coins + level.collectedCoins);
+		coinsText.UpdateText(coins);
 		livesText.UpdateText(lives);
 	}
 }

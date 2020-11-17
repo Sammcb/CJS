@@ -26,6 +26,7 @@ public class Coin: AnimatedTileEntity {
 			source.PlayOneShot(coinsSfx);
 			gameObject.SetActive(false);
 			level.collectedCoins += amount;
+			level.world.coins += amount;
 			level.world.UpdateStats();
 		}
 	}
