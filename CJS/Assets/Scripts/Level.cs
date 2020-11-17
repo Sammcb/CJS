@@ -67,8 +67,8 @@ public class Level: MonoBehaviour {
 		exit.z = baseZ - 1;
 		exit.exit = toShop;
 
-		exit.gameObject.SetActive(level == maxLevel);
-		princess.gameObject.SetActive(level == maxLevel);
+		if (level == maxLevel) exit.gameObject.SetActive(false);
+		if (level != maxLevel) princess.gameObject.SetActive(false);
 
 		spawn = new GameObject("Spawn", typeof(Spawn)).GetComponent<Spawn>();
 		spawn.transform.SetParent(transform);
