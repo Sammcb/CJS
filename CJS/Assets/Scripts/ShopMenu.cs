@@ -12,6 +12,7 @@ public class ShopMenu : MonoBehaviour {
 	public GameObject buttoncost1;
 	public GameObject buttoncost2;
 	public GameObject buttoncost3;
+	public GameObject scrollText;
 	private Color grayedOut;
 	private Color normalColor;
 	private int cost1 = 3;
@@ -29,6 +30,9 @@ public class ShopMenu : MonoBehaviour {
 		if(world.speed >= 8) buttoncost1.GetComponent<TMPro.TextMeshProUGUI>().text = "MAX";
 		if(world.range >= 9) buttoncost2.GetComponent<TMPro.TextMeshProUGUI>().text = "MAX";
 		if(world.lives >= 5) buttoncost3.GetComponent<TMPro.TextMeshProUGUI>().text = "MAX";
+
+		scrollText.GetComponent<TMPro.TextMeshProUGUI>().text = "hello";
+
 	}
 
 	public void Done() {
