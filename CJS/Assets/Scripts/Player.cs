@@ -16,6 +16,8 @@ public class Player: AnimatedTileEntity {
 	private float shootDelay;
 	private float colRadius = 0.3f;
 	private bool paused = false;
+	private AudioClip throwSfx;
+	private AudioSource source;
 
 	new protected void Start() {
 		base.Start();
@@ -29,6 +31,8 @@ public class Player: AnimatedTileEntity {
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("Player");
 		shootDelay = maxShootDelay;
+		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
+		throwSfx = Resources.Load<AudioClip>("SoundEffects/throwSFX");
 		emitter = new GameObject("Emitter", typeof(PlayerParticle)).GetComponent<PlayerParticle>();
 		emitter.transform.SetParent(transform);
 		emitter.transform.rotation = transform.rotation * Quaternion.AngleAxis(180, Vector3.forward);
@@ -75,6 +79,7 @@ public class Player: AnimatedTileEntity {
 		if (shootDelay < maxShootDelay) shootDelay += Time.deltaTime;
 
 		if(Input.GetButton("Fire1") && shootDelay >= maxShootDelay) {
+			source.PlayOneShot(throwSfx);
 			GameObject snowball = new GameObject("Snowball", typeof(Snowball));
 			snowball.transform.SetParent(level.transform);
 			Snowball sb = snowball.GetComponent<Snowball>();
