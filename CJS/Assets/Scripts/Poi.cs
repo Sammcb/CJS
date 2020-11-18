@@ -9,7 +9,7 @@ public class Poi: TileEntity {
 		base.Start();
 		sr.sprite = Resources.Load<Sprite>("Sprites/poi");
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
-		amount = 1;
+		amount = 2;
 	}
 
 	public bool Saved() {
