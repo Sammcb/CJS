@@ -1227,7 +1227,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music -
+  m_text: 'Music - Winter Solstice by reusenoise (c) and Good And Evil Is Evil by
+    septahelix (c)
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94634c0453018426cba4e55e7f2c6381, type: 2}
   m_sharedMaterial: {fileID: 5494492723609414528, guid: 94634c0453018426cba4e55e7f2c6381,
