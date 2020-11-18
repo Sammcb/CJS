@@ -5137,9 +5137,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The Earth''s climate has finally hit a critical point, and fires have
-    erupted all accross your home on the ice. It''s up to you to save as many homes
-    as you can while making sure you don''t perish in the flames yourself. '
+  m_text: The Earth's climate has finally hit a critical point, and fires have erupted
+    all accross your home on the ice. It's up to you to save as many homes as you
+    can while making sure you don't perish in the flames yourself. Your lover is
+    counting on and waiting for you at the end!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94634c0453018426cba4e55e7f2c6381, type: 2}
   m_sharedMaterial: {fileID: 5494492723609414528, guid: 94634c0453018426cba4e55e7f2c6381,
@@ -5594,7 +5595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: 49.4}
+  m_AnchoredPosition: {x: 6, y: 2}
   m_SizeDelta: {x: 556.1898, y: 64.674484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112539681
@@ -5616,10 +5617,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Move with WASD or arrow keys. Press esc to toggle pause. Click to throw
-    snowballs and extinguish fires. Collect coins and save as many houses as you
-    can - each house left standing will earn you 2 coins! Use coins to upgrade your
-    abilities.
+  m_text: 'Move with WASD or arrow keys. Press esc to toggle pause. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94634c0453018426cba4e55e7f2c6381, type: 2}
   m_sharedMaterial: {fileID: 5494492723609414528, guid: 94634c0453018426cba4e55e7f2c6381,

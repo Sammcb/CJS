@@ -18,7 +18,23 @@ public class ShopMenu : MonoBehaviour {
 	private int cost1 = 3;
 	private int cost2 = 3;
 	private int cost3 = 3;
+	private string[] scrolltext = {
+		"Click to throw snowballs and extinguish fires!", 
+		"Collect fish to upgrade your abilities!", 
+		"For each igloo you save from the fires, the inhabitants will reward you with two fish",
+		"Better get those fish before they burn up!",
+		"Fire can spread very quickly...",
+		"Everywhere you look...", 
+		"Your fellow penguins are counting on you!", 
+		"Doesn't look too bad up ahead", 
+		"If you hear a sizzle, you're too late...", 
+		"Oh no, now it's REALLY everywhere", 
+		"Your lover is waiting at the end!", 
+		"Congrats"};
 
+
+
+//Click to throw snowballs and extinguish fires. Collect coins and save as many houses as you can - each house left standing will earn you 2 coins! Use coins to upgrade your abilities.
 	private void Start() {
 		UpdateShop();
 	}
@@ -34,8 +50,8 @@ public class ShopMenu : MonoBehaviour {
 		if(world.range >= 9) buttoncost2.text = "MAX";
 		if(world.lives >= 5) buttoncost3.text = "MAX";
 
-		scrollText.text = "hello";
-
+		//scrollText.fontSize = 12;
+		scrollText.text = scrolltext[world.levelNum];
 	}
 
 	public void Done() {

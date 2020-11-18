@@ -158,10 +158,14 @@ public class Level: MonoBehaviour {
 				fires.FillTiles(new Vector2Int(18,13), new Vector2Int(21,15));
 				fires.FillTiles(new Vector2Int(28,6), new Vector2Int(28,6));
 				fires.FillTiles(new Vector2Int(33, 13), new Vector2Int(33,13));
-				coins.FillTiles(new Vector2Int(22,5), new Vector2Int(24,7));
+				coins.SetTile(new Vector2Int(22,5));
+				coins.SetTile(new Vector2Int(24,5));
+				coins.SetTile(new Vector2Int(22,7));
+				coins.SetTile(new Vector2Int(24,7));
 				coins.SetTile(new Vector2Int(6, 13));
 				coins.SetTile(new Vector2Int(9, 13));
-				pois.FillTiles(new Vector2Int(7, 11), new Vector2Int(8,12));
+				pois.SetTile(new Vector2Int(7, 11));
+				pois.SetTile(new Vector2Int(8, 12));
 				break;
 			case 6:
 				ground.FillTiles(new Vector2Int(1,1), new Vector2Int(40,40));

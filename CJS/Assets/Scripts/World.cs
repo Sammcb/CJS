@@ -11,7 +11,7 @@ public class World: MonoBehaviour {
 	public UnityEvent die;
 	private Level level;
 	private Camera cam;
-	private int levelNum = 0;
+	public int levelNum = 0;
 	private int maxLevel = 11;
 	private int baseZ = 3;
 	public GameObject shopParentMenu;
