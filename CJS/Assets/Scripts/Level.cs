@@ -22,6 +22,9 @@ public class Level: MonoBehaviour {
 	public GameObject pause;
 	public int maxLevel;
 	private bool paused = false;
+	private AudioClip pauseSfx;
+	private AudioClip unpauseSfx;
+	private AudioSource source;
 
 	private void BuildObjects(int level) {
 		TileEntity.level = this;
@@ -78,6 +81,9 @@ public class Level: MonoBehaviour {
 	}
 
 	public void Init(int level) {
+		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
+		pauseSfx = Resources.Load<AudioClip>("SoundEffects/pauseSFX");
+		unpauseSfx = Resources.Load<AudioClip>("SoundEffects/unpauseSFX");
 		BuildObjects(level);
 		switch (level) {
 			case 0:
@@ -325,10 +331,12 @@ public class Level: MonoBehaviour {
 	private void Update() {
 		if (Input.GetButtonDown("Cancel")) {
 			if (paused) {
+				source.PlayOneShot(unpauseSfx);
 				pause.SetActive(false);
 				Time.timeScale = 1;
 				paused = false;
 			} else {
+				source.PlayOneShot(pauseSfx);
 				pause.SetActive(true);
 				Time.timeScale = 0;
 				paused = true;
