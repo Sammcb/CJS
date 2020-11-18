@@ -943,7 +943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -63}
+  m_AnchoredPosition: {x: 0, y: -84}
   m_SizeDelta: {x: 825, y: 26.183372}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248700044
@@ -1205,7 +1205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -23}
+  m_AnchoredPosition: {x: 0, y: -34}
   m_SizeDelta: {x: 825, y: 29.358963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340170242
@@ -1227,8 +1227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Music - Winter Solstice by reusenoise (c) and Good And Evil Is Evil by
-    septahelix (c)
+  m_text: 'Music - Winter Solstice by reusenoise and Good And Evil Is Evil by septahelix
 
 '
   m_isRightToLeft: 0
