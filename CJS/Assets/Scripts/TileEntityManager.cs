@@ -9,11 +9,21 @@ public class TileEntityManager<T> where T: TileEntity {
 	public List<Vector2Int> tiles = new List<Vector2Int>();
 	public List<T> objects = new List<T>();
 	public Vector2Int size = new Vector2Int(1, 1);
+	protected GameObject parent;
+
+	public TileEntityManager(Level level, string tileName, int z) {
+		this.level = level;
+		this.tileName = tileName;
+		this.z = z;
+		parent = new GameObject(tileName + "s");
+		parent.transform.SetParent(level.transform);
+		parent.transform.localPosition = Vector3.zero;
+	}
 
 	public void SetTile(Vector2Int pos) {
 		GameObject o = new GameObject(tileName, typeof(T));
 		T te = o.GetComponent<T>();
-		te.transform.SetParent(level.transform);
+		te.transform.SetParent(parent.transform);
 		te.transform.localPosition = Vector3.forward * z;
 		te.z = z;
 		if (te.GetType() == typeof(Poi)) {
