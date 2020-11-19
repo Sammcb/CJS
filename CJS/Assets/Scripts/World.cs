@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class World: MonoBehaviour {
 	public UnityEvent toShop;
@@ -11,6 +12,8 @@ public class World: MonoBehaviour {
 	public UnityEvent die;
 	private Level level;
 	private Camera cam;
+	private Light2D globeLight;
+	private Light2D playerLight;
 	public int levelNum = 0;
 	private int maxLevel = 11;
 	private int baseZ = 3;
@@ -39,7 +42,20 @@ public class World: MonoBehaviour {
 
 		transform.position = Vector3.zero;
 
+		globeLight = new GameObject("GlobalLight", typeof(Light2D)).GetComponent<Light2D>();
+		globeLight.transform.SetParent(transform);
+		globeLight.transform.position = Vector3.zero;
+		globeLight.lightType = Light2D.LightType.Global;
+		globeLight.gameObject.SetActive(false);
+
+		playerLight = new GameObject("PlayerLight", typeof(Light2D), typeof(PlayerLight)).GetComponent<Light2D>();
+		playerLight.transform.SetParent(transform);
+		playerLight.transform.position = Vector3.zero;
+		playerLight.lightType = Light2D.LightType.Point;
+		playerLight.pointLightOuterRadius = 10;
+
 		cam = new GameObject("Camera", typeof(Camera), typeof(AudioListener), typeof(PlayerCamera)).GetComponent<Camera>();
+		cam.transform.SetParent(transform);
 		cam.transform.position = Vector3.forward * -10;
 		cam.tag = "MainCamera";
 		cam.orthographic = true;
@@ -123,6 +139,7 @@ public class World: MonoBehaviour {
 		p.speed = speed;
 		p.range = range;
 		cam.GetComponent<PlayerCamera>().target = p;
+		playerLight.GetComponent<PlayerLight>().target = p;
 		return p;
 	}
 
