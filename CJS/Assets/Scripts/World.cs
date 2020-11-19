@@ -18,7 +18,6 @@ public class World: MonoBehaviour {
 	public GameObject shopChildMenu;
 	public GameObject stats;
 	public GameObject pause;
-	public PlayerCamera bgCam;
 
 	public int coins = 0;
 	public int lives = 3;
@@ -124,7 +123,6 @@ public class World: MonoBehaviour {
 		p.speed = speed;
 		p.range = range;
 		cam.GetComponent<PlayerCamera>().target = p;
-		bgCam.target = p;
 		return p;
 	}
 

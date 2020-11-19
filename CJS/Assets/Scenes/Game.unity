@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6fb4a64be2985425eaf35f3af3792885,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -2319,7 +2320,6 @@ MonoBehaviour:
   shopChildMenu: {fileID: 354047916}
   stats: {fileID: 1710646907}
   pause: {fileID: 2046774912}
-  bgCam: {fileID: 0}
   coins: 0
   lives: 3
   speed: 3
