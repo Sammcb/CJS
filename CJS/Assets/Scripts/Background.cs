@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Background: MonoBehaviour {
+public class Background: TileEntity {
 	public Camera cam;
+
+	new private void Start() {
+		base.Start();
+		sr.sprite = Resources.Load<Sprite>("Sprites/background");
+		sr.drawMode = SpriteDrawMode.Tiled;
+		sr.size = new Vector2(200, 200);
+	}
 
 	private void Awake() {
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-		float camHeight = cam.orthographicSize * 2;
-		Vector2 camSize = new Vector2(cam.aspect * camHeight, camHeight);
-		Vector2 srSize = sr.sprite.bounds.size;
-		Vector2 scale = transform.localScale;
-		scale *= camSize.x >= camSize.y ? camSize.x / srSize.x : camSize.y / srSize.y;
-		transform.localScale = scale;
 	}
 }

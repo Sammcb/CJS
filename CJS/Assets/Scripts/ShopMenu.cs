@@ -30,11 +30,9 @@ public class ShopMenu : MonoBehaviour {
 		"If you hear a sizzle, you're too late...", 
 		"Oh no, now it's REALLY everywhere", 
 		"Your lover is waiting at the end!", 
-		"Congrats"};
+		"Congrats"
+	};
 
-
-
-//Click to throw snowballs and extinguish fires. Collect coins and save as many houses as you can - each house left standing will earn you 2 coins! Use coins to upgrade your abilities.
 	private void Start() {
 		UpdateShop();
 	}
@@ -49,8 +47,6 @@ public class ShopMenu : MonoBehaviour {
 		if(world.speed >= 8) buttoncost1.text = "MAX";
 		if(world.range >= 9) buttoncost2.text = "MAX";
 		if(world.lives >= 5) buttoncost3.text = "MAX";
-
-		//scrollText.fontSize = 12;
 		scrollText.text = scrolltext[world.levelNum];
 	}
 

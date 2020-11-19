@@ -11,6 +11,7 @@ public class Level: MonoBehaviour {
 	public Spawn spawn;
 	public Exit exit;
 	public Princess princess;
+	public Background background;
 	public TileEntityManager<Fire> fires;
 	public TileEntityManager<Ember> embers;
 	public TileEntityManager<Coin> coins;
@@ -76,6 +77,10 @@ public class Level: MonoBehaviour {
 		spawn = new GameObject("Spawn", typeof(Spawn)).GetComponent<Spawn>();
 		spawn.transform.SetParent(transform);
 		spawn.z = baseZ - 1;
+
+		background = new GameObject("Background", typeof(Background)).GetComponent<Background>();
+		background.transform.SetParent(transform);
+		background.z = baseZ + 1;
 
 		player = world.BuildPlayer();
 	}
@@ -329,6 +334,7 @@ public class Level: MonoBehaviour {
 			default:
 				break;
 		}
+		background.SetPos(Vector2Int.zero);
 		spawn.SpawnPlayer(player);
 	}
 
