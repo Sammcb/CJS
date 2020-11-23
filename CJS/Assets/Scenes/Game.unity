@@ -2315,7 +2315,7 @@ MonoBehaviour:
   die:
     m_PersistentCalls:
       m_Calls: []
-  levelNum: 0
+  levelNum: 11
   shopParentMenu: {fileID: 982661628}
   shopChildMenu: {fileID: 354047916}
   stats: {fileID: 1710646907}

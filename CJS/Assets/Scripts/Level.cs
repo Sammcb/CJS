@@ -8,7 +8,7 @@ public class Level: MonoBehaviour {
 	public World world;
 	public int baseZ = 3;
 	public Vector2Int min = Vector2Int.zero;
-	public Vector2Int max = new Vector2Int(50, 50);
+	public Vector2Int max = new Vector2Int(100, 100);
 	public Spawn spawn;
 	public Exit exit;
 	public Princess princess;
@@ -79,6 +79,7 @@ public class Level: MonoBehaviour {
 
 		player = world.BuildPlayer();
 		playerLight.GetComponent<PlayerLight>().target = player;
+		princess.player = player;
 	}
 
 	public void Init(int level) {
