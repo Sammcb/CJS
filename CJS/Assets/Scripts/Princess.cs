@@ -18,7 +18,7 @@ public class Princess: AnimatedTileEntity {
 		c.isTrigger = true;
 		PrincessParticle emitter = new GameObject("Emitter", typeof(PrincessParticle)).GetComponent<PrincessParticle>();
 		emitter.transform.SetParent(transform);
-		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z - 1));
+		emitter.SetPos(new Vector3(transform.position.x, transform.position.y + 0.5f, z - 1));
 	}
 
 	private void OnTriggerEnter2D(Collider2D col) {
