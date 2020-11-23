@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Background: TileEntity {
+public class Background: AnimatedTileEntity {
 	public Camera cam;
 
 	new private void Start() {
 		base.Start();
-		sr.sprite = Resources.Load<Sprite>("Sprites/background");
+		sprites = Resources.LoadAll<Sprite>("Sprites/background");
+		sr.sprite = sprites[0];
 		sr.drawMode = SpriteDrawMode.Tiled;
 		sr.size = new Vector2(200, 200);
-	}
-
-	private void Awake() {
-		SpriteRenderer sr = GetComponent<SpriteRenderer>();
+		StartCoroutine(Animate());
 	}
 }
