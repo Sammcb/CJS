@@ -9,7 +9,6 @@ public class Fire: AnimatedTileEntity {
 	private int tick;
 	private AudioClip burnSfx;
 	private AudioSource source;
-	private Light2D light;
 
 	new private void Start() {
 		base.Start();
@@ -26,11 +25,6 @@ public class Fire: AnimatedTileEntity {
 		FireParticle emitter = new GameObject("Emitter", typeof(FireParticle)).GetComponent<FireParticle>();
 		emitter.transform.SetParent(transform);
 		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z - 1));
-		light = gameObject.AddComponent(typeof(Light2D)) as Light2D;
-		light.lightType = Light2D.LightType.Point;
-		light.shadowIntensity = 0.5f;
-		// light.intensity = 0.3f;
-		light.color = new Color(1, 0.25f, 0.25f);
 	}
 
 	IEnumerator SpreadFire() {
