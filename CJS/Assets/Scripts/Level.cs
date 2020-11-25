@@ -19,7 +19,7 @@ public class Level: MonoBehaviour {
 	public TileEntityManager<Ember> embers;
 	public TileEntityManager<Coin> coins;
 	public TileEntityManager<Poi> pois;
-	public SealManager seals;
+	public TileEntityManager<Seal> seals;
 	public Player player;
 	public UnityEvent toShop;
 	public Grid g;
@@ -57,6 +57,8 @@ public class Level: MonoBehaviour {
 		coins = new TileEntityManager<Coin>(this, "Coin", baseZ - 1);
 		
 		pois = new TileEntityManager<Poi>(this, "Poi", baseZ - 1);
+
+		seals = new TileEntityManager<Seal>(this, "Seal", baseZ - 1);
 		
 		princess = new GameObject("Princess", typeof(Princess)).GetComponent<Princess>();
 		princess.transform.SetParent(transform);
@@ -82,7 +84,6 @@ public class Level: MonoBehaviour {
 		player = world.BuildPlayer();
 		playerLight.GetComponent<PlayerLight>().target = player;
 		princess.player = player;
-		seals = new SealManager(this, "Seal", baseZ - 1, player);
 	}
 
 	public void Init(int level) {
@@ -334,7 +335,6 @@ public class Level: MonoBehaviour {
 			default:
 				break;
 		}
-		seals.SetPlayer();
 		background.SetPos(Vector2Int.zero);
 		spawn.SpawnPlayer(player);
 	}
