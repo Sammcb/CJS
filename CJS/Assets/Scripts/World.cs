@@ -11,11 +11,16 @@ public class World: MonoBehaviour {
 	public UnityEvent nextLevel;
 	public UnityEvent die;
 	private Level level;
+	private DataBus dataBus;
 	private Camera cam;
 	private Light2D globeLight;
 	public int levelNum = 0;
 	private int maxLevel = 11;
 	private int baseZ = 3;
+	private int maxIgloos = 0;
+	private int igloosSaved = 0;
+	private int maxSeals = 0;
+	private int sealsSaved = 0;
 	public GameObject shopParentMenu;
 	public GameObject shopChildMenu;
 	public GameObject stats;
@@ -62,6 +67,10 @@ public class World: MonoBehaviour {
 		dieSfx = Resources.Load<AudioClip>("SoundEffects/dieSFX");
 		levelStartSfx = Resources.Load<AudioClip>("SoundEffects/levelStartSfx");
 
+		dataBus = new GameObject("DataBus", typeof(DataBus)).GetComponent<DataBus>();
+		DontDestroyOnLoad(dataBus);
+		dataBus.transform.SetParent(transform.parent);
+
 		InitLevel();
 	}
 
@@ -75,10 +84,17 @@ public class World: MonoBehaviour {
 		level.world = this;
 		UpdateStats();
 		level.Init(levelNum);
+		maxIgloos += level.pois.objects.Count;
+		maxSeals += level.seals.objects.Count;
 	}
 
 	private void ToShop() {
-		foreach (Poi poi in level.pois.objects) if (poi.Saved()) coins += poi.amount;
+		foreach (Poi poi in level.pois.objects) if (poi.Saved()) {
+			coins += poi.amount;
+			igloosSaved++;
+		}
+		sealsSaved += level.savedSeals;
+		lives += level.savedSeals;
 		UpdateStats();
 		Destroy(level.gameObject);
 		if (levelNum == maxLevel) {
@@ -115,7 +131,15 @@ public class World: MonoBehaviour {
 
 	private void Win() {
 		Clean();
-		SceneManager.LoadScene("Win");
+		if (igloosSaved >= maxIgloos / 2 && sealsSaved >= maxSeals / 2) {
+			SceneManager.LoadScene("Win");
+		} else {
+			dataBus.maxIgloos = maxIgloos;
+			dataBus.igloosSaved = igloosSaved;
+			dataBus.maxSeals = maxSeals;
+			dataBus.sealsSaved = sealsSaved;
+			SceneManager.LoadScene("ColdWin");
+		}
 	}
 
 	private void Lose() {

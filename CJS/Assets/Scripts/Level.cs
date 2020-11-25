@@ -19,10 +19,12 @@ public class Level: MonoBehaviour {
 	public TileEntityManager<Ember> embers;
 	public TileEntityManager<Coin> coins;
 	public TileEntityManager<Poi> pois;
+	public SealManager seals;
 	public Player player;
 	public UnityEvent toShop;
 	public Grid g;
 	public int collectedCoins = 0;
+	public int savedSeals = 0;
 	public GameObject pause;
 	public int maxLevel;
 	private bool paused = false;
@@ -80,6 +82,7 @@ public class Level: MonoBehaviour {
 		player = world.BuildPlayer();
 		playerLight.GetComponent<PlayerLight>().target = player;
 		princess.player = player;
+		seals = new SealManager(this, "Seal", baseZ - 1, player);
 	}
 
 	public void Init(int level) {
@@ -331,6 +334,7 @@ public class Level: MonoBehaviour {
 			default:
 				break;
 		}
+		seals.SetPlayer();
 		background.SetPos(Vector2Int.zero);
 		spawn.SpawnPlayer(player);
 	}

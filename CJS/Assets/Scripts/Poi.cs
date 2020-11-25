@@ -21,5 +21,9 @@ public class Poi: TileEntity {
 		BurnParticle emitter = new GameObject("Emitter", typeof(BurnParticle)).GetComponent<BurnParticle>();
 		emitter.transform.SetParent(level.transform);
 		emitter.SetPos(new Vector3(transform.position.x, transform.position.y, z - 1));
+		Ashes ash = new GameObject("Ashes", typeof(Ashes)).GetComponent<Ashes>();
+		ash.z = z;
+		ash.transform.SetParent(transform.parent);
+		ash.SetRawPos(transform.position);
 	}
 }
