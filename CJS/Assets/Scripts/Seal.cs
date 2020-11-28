@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Seal: TileEntity {
 	public bool burnt = false;
-	private AudioClip coinsSfx;
+	private AudioClip sealSfx;
 	private AudioSource source;
 
 	new protected void Start() {
@@ -13,12 +13,12 @@ public class Seal: TileEntity {
 		c = gameObject.AddComponent(typeof(BoxCollider2D)) as BoxCollider2D;
 		c.isTrigger = true;
 		source = GameObject.Find("SfxSource").GetComponent<AudioSource>();
-		coinsSfx = Resources.Load<AudioClip>("SoundEffects/coinsSFX");
+		sealSfx = Resources.Load<AudioClip>("SoundEffects/sealSFX");
 	}
 
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "Player") {
-			source.PlayOneShot(coinsSfx);
+			source.PlayOneShot(sealSfx);
 			gameObject.SetActive(false);
 			level.savedSeals++;
 		}
