@@ -97,7 +97,6 @@ public class Level: MonoBehaviour {
 				walls.FillWalls();
 				exit.SetPos(new Vector2Int(2, 15));
 				spawn.SetPos(new Vector2Int(2, 1));
-				//seals.SetTile(new Vector2Int(2, 5));
 				break;
 			case 1:
 				grounds.FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 3));
