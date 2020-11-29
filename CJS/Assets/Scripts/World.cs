@@ -15,7 +15,7 @@ public class World: MonoBehaviour {
 	private Camera cam;
 	private Light2D globeLight;
 	public int levelNum = 0;
-	private int maxLevel = 11;
+	private int maxLevel = 12;
 	private int baseZ = 3;
 	private int maxIgloos = 0;
 	private int igloosSaved = 0;

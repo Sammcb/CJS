@@ -97,6 +97,7 @@ public class Level: MonoBehaviour {
 				walls.FillWalls();
 				exit.SetPos(new Vector2Int(2, 15));
 				spawn.SetPos(new Vector2Int(2, 1));
+				//seals.SetTile(new Vector2Int(2, 5));
 				break;
 			case 1:
 				grounds.FillTiles(new Vector2Int(1, 1), new Vector2Int(10, 3));
@@ -127,6 +128,20 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(1, 15));
 				break;
 			case 4:
+				grounds.FillTiles(new Vector2Int(1,1), new Vector2Int(15,10));
+				walls.FillWalls();
+				walls.FillTiles(new Vector2Int(10, 2), new Vector2Int(10,10));
+				walls.FillTiles(new Vector2Int(5, 1), new Vector2Int(5, 9));
+				coins.SetTile(new Vector2Int(1,1));
+				coins.SetTile(new Vector2Int(1,10));
+				fires.FillTiles(new Vector2Int(6, 3), new Vector2Int(9,3));
+				fires.FillTiles(new Vector2Int(6, 7), new Vector2Int(9,7));
+				fires.SetTile(new Vector2Int(5, 10));
+				spawn.SetPos(new Vector2Int(15, 5));
+				exit.SetPos(new Vector2Int(1, 5));
+				seals.SetTile(new Vector2Int(3, 5));
+				break;
+			case 5:
 				grounds.FillTiles(new Vector2Int(1,1), new Vector2Int(11, 10));
 				walls.FillWalls();
 				walls.FillTiles(new Vector2Int(3,1), new Vector2Int(3, 8));
@@ -142,7 +157,7 @@ public class Level: MonoBehaviour {
 				fires.FillTiles(new Vector2Int(4, 1), new Vector2Int(8,2));
 				fires.FillTiles(new Vector2Int(7, 9), new Vector2Int(10,10));
 				break;
-			case 5:
+			case 6:
 				grounds.FillTiles(new Vector2Int(2,2), new Vector2Int(34,19));
 				walls.FillWalls();
 				walls.FillTiles(new Vector2Int(5,5), new Vector2Int(13,5));
@@ -171,9 +186,9 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(6, 13));
 				coins.SetTile(new Vector2Int(9, 13));
 				pois.SetTile(new Vector2Int(7, 11));
-				pois.SetTile(new Vector2Int(8, 12));
+				//pois.SetTile(new Vector2Int(8, 12));
 				break;
-			case 6:
+			case 7:
 				grounds.FillTiles(new Vector2Int(1,1), new Vector2Int(40,40));
 				walls.FillWalls();
 				spawn.SetPos(new Vector2Int(20,20));
@@ -190,7 +205,7 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(1, 1));
 				coins.SetTile(new Vector2Int(40, 40));
 				break;
-			case 7:
+			case 8:
 				grounds.FillTiles(new Vector2Int(2,2), new Vector2Int(18,32));
 				grounds.FillTiles(new Vector2Int(19,2), new Vector2Int(36, 4));
 				walls.FillWalls();
@@ -213,13 +228,13 @@ public class Level: MonoBehaviour {
 				walls.FillTiles(new Vector2Int(10,23), new Vector2Int(10,24));
 				spawn.SetPos(new Vector2Int(2,2));
 				exit.SetPos(new Vector2Int(8, 24));
-				coins.SetTile(new Vector2Int(35,2));
-				coins.SetTile(new Vector2Int(35,4));
+				//coins.SetTile(new Vector2Int(35,2));
+				//coins.SetTile(new Vector2Int(35,4));
 				coins.SetTile(new Vector2Int(34,3));
 				coins.SetTile(new Vector2Int(36,3));
 				coins.SetTile(new Vector2Int(2,32));
 				coins.SetTile(new Vector2Int(15, 18));
-				pois.FillTiles(new Vector2Int(9,5), new Vector2Int(10,5));
+				pois.FillTiles(new Vector2Int(9,5), new Vector2Int(9,5));
 				fires.FillTiles(new Vector2Int(5,10), new Vector2Int(5,12));
 				fires.FillTiles(new Vector2Int(12,4), new Vector2Int(13,9));
 				fires.FillTiles(new Vector2Int(20, 2), new Vector2Int(20,4));
@@ -227,7 +242,7 @@ public class Level: MonoBehaviour {
 				fires.SetTile(new Vector2Int(15, 29));
 				fires.SetTile(new Vector2Int(2, 18));
 				break;
-			case 8:
+			case 9:
 				grounds.FillTiles(new Vector2Int(10,12), new Vector2Int(12,26));
 				grounds.FillTiles(new Vector2Int(13,24), new Vector2Int(22, 26));
 				grounds.FillTiles(new Vector2Int(23,12), new Vector2Int(39,26));
@@ -241,7 +256,7 @@ public class Level: MonoBehaviour {
 				spawn.SetPos(new Vector2Int(24,25));
 				exit.SetPos(new Vector2Int(36, 49));
 				pois.SetTile(new Vector2Int(11,12));
-				pois.SetTile(new Vector2Int(37,12));
+				seals.SetTile(new Vector2Int(37,12));
 				fires.SetTile(new Vector2Int(11, 23));
 				fires.SetTile(new Vector2Int(30, 12));
 				fires.SetTile(new Vector2Int(35, 25));
@@ -250,7 +265,7 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(29, 20));
 				coins.SetTile(new Vector2Int(32, 20));
 				break;
-			case 9:
+			case 10:
 				grounds.FillTiles(new Vector2Int(2,2), new Vector2Int(42,17));
 				grounds.FillTiles(new Vector2Int(21,18), new Vector2Int(23, 35));
 				walls.FillWalls();
@@ -270,7 +285,7 @@ public class Level: MonoBehaviour {
 				spawn.SetPos(new Vector2Int(22,3));
 				exit.SetPos(new Vector2Int(22, 35));
 				pois.SetTile(new Vector2Int(9,6));
-				pois.SetTile(new Vector2Int(35,6));
+				seals.SetTile(new Vector2Int(35,6));
 				fires.SetTile(new Vector2Int(6, 3));
 				fires.SetTile(new Vector2Int(38, 3));
 				fires.SetTile(new Vector2Int(7, 12));
@@ -285,22 +300,22 @@ public class Level: MonoBehaviour {
 				coins.SetTile(new Vector2Int(19, 6));
 				coins.SetTile(new Vector2Int(25, 6));
 				break;
-			case 10:
+			case 11:
 				grounds.FillTiles(new Vector2Int(2,2), new Vector2Int(24,25));
 				grounds.FillTiles(new Vector2Int(25,24), new Vector2Int(42, 25));
 				walls.FillWalls();
 				spawn.SetPos(new Vector2Int(2,2));
 				exit.SetPos(new Vector2Int(42, 24));
 				pois.SetTile(new Vector2Int(30,24));
-				coins.SetTile(new Vector2Int(38, 24));
+				//coins.SetTile(new Vector2Int(38, 24));
 				coins.SetTile(new Vector2Int(40,24));
-				coins.SetTile(new Vector2Int(34, 24));
+				//coins.SetTile(new Vector2Int(34, 24));
 				coins.SetTile(new Vector2Int(36, 24));
 				fires.FillTiles(new Vector2Int(2,5), new Vector2Int(20,25));
 				fires.FillTiles(new Vector2Int(5,2), new Vector2Int(24,4));
 				fires.FillTiles(new Vector2Int(21,5), new Vector2Int(24,20));
 				break;
-			case 11:
+			case 12:
 				grounds.FillTiles(new Vector2Int(33,8), new Vector2Int(49,49));
 				walls.FillWalls();
 				walls.FillTiles(new Vector2Int(33,22), new Vector2Int(42,22));

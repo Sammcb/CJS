@@ -22,6 +22,7 @@ public class ShopMenu : MonoBehaviour {
 		"Click to throw snowballs and extinguish fires!", 
 		"Collect fish to upgrade your abilities!", 
 		"For each igloo you save from the fires, the inhabitants will reward you with two fish",
+		"If you can save a seal before the fires reach them, they will grant you an extra life!",
 		"Better get those fish before they burn up!",
 		"Fire can spread very quickly...",
 		"Everywhere you look...", 
